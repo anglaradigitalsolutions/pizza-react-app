@@ -1,10 +1,14 @@
 import React from "react";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
+import Delivery from "../images/Group.svg";
+import Takeaway from "../images/covered-food-tray-on-a-hand-of-hotel-room-service-svgrepo-com 1.svg";
+
+
 
 const WelcomePage = () => {
   return (
     <div className="banner">
-      <div style={{ width: "490px", marginTop: 200}}>
+      <div style={{ width: "490px", marginTop: 200 }}>
         <div className="banner-text">
           Order Your <br />
           <span>Favourite </span> Pizza
@@ -16,8 +20,12 @@ const WelcomePage = () => {
 
         <div className="container-skewd welcomCard">
           <div className="lined-skew-btns">
-            <div className="orange-btn">Delivery</div>
-            <div className="grey-btn">Takeaway</div>
+            <div className="orange-btn">
+              <img src={Delivery} className="btn-ico-logo" alt="Delivery" />
+              Delivery</div>
+            <div className="grey-btn">
+              <img src={Takeaway} alt='Takeaway' className="btn-ico-logo" />
+              Takeaway</div>
           </div>
           <div style={{ textAlign: "left" }}>
             <div className="banner-card-text">Contactless Delivery</div>

@@ -168,7 +168,7 @@ input[type="text"]::placeholder {
     background: linear-gradient(180deg, #ff9966 0%, #ff5e62 100%) !important;
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
     position: relative;
     box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
@@ -186,7 +186,7 @@ input[type="text"]::placeholder {
         #ffffff;
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-around;
     position: relative;
     box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
@@ -195,6 +195,7 @@ input[type="text"]::placeholder {
     min-height: 50px;
     width: auto !important;
     margin-right: 25px;
+    text-align: left;
 }
 
 .grey-btn::after {
@@ -207,9 +208,11 @@ input[type="text"]::placeholder {
     transform: skew(345deg);
     content: " ";
     display: block;
-    width: 100%;
+    width: 80px;
     height: 100%;
     position: absolute;
+    text-align: left;
+    left: -20px;
     z-index: -1;
 }
 
@@ -492,4 +495,143 @@ h6 {
     position: absolute;
     left: -30px;
     top: -30px;
+}
+
+.pizCard-cutoization {
+    display: flex;
+}
+
+.pizCard-cutoization>div {
+    width: 50%;
+}
+
+.pizCard-price {
+    background: linear-gradient(90deg, #FF9966 13.89%, #FF5E62 90.74%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.pizCard-btn::after {
+    transform-origin: bottom left;
+    background: linear-gradient(180deg, #ff9966 0%, #ff5e62 100%) !important;
+    border-radius: 5px;
+    transform: skew(320deg);
+    content: " ";
+    display: block;
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    left: -26px;
+}
+
+.pizCard-btn {
+    width: fit-content !important;
+    background: linear-gradient(180deg, #ff9966 0%, #ff5e62 100%) !important;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+    box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
+    z-index: 3;
+    min-height: 35px;
+    margin-right: -16px;
+    padding-right: 10px;
+    color: white;
+    font-size: 14px;
+    text-align: right;
+    align-self: end;
+    position: absolute;
+    right: 0px;
+    bottom: -55px;
+}
+
+.navbarMain {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.noTopMargin {
+    margin: 0px;
+}
+
+.noTopMargin li {
+    margin-right: 35px;
+}
+
+.noTopMargin li:hover {
+    margin-right: 35px;
+}
+
+.sign-btn {
+    background: linear-gradient(180deg, #FF9966 0%, #FF5E62 100%);
+    border-radius: 10px;
+    box-shadow: 5px 4px 4px rgb(255 164 166 / 30%);
+    padding: 15px;
+    position: relative;
+    text-align: left;
+    padding-left: 0px;
+    color: white;
+    font-weight: 700;
+}
+
+.sign-btn::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 99%;
+    background: linear-gradient(180deg, #FF9966 0%, #FF5E62 100%);
+    border-radius: 10px;
+    box-shadow: 5px 4px 4px rgb(255 164 166 / 30%);
+    transform: skew(345deg);
+    left: -15px;
+    z-index: -1;
+    top: 0px;
+}
+
+.dflex {
+    display: flex;
+}
+
+.cart-btn {
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 15px;
+    position: relative;
+    text-align: left;
+    padding-right: 0px;
+    font-weight: 700;
+    margin-right: 50px;
+    box-shadow: -6px 4px 4px rgb(255 164 166 / 30%);
+}
+
+.cart-btn::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 99%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 2px 4px 12px rgb(255 164 166 / 30%);
+    transform: skew(345deg);
+    right: -15px;
+    z-index: -1;
+    top: 0px;
+}
+
+.btn-ico-logo {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
 }

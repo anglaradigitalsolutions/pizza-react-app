@@ -1,149 +1,99 @@
-import { CardActionArea, CardContent, CardMedia, makeStyles, Typography } from "@mui/material";
+import { CardContent, CardMedia } from "@mui/material";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
+import { makeStyles } from "@mui/styles";
 import { Card } from "reactstrap";
 import Vector from "../images/Vector.png";
+import freshPizz from "../images/pizza_21_veg 1.png";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+
+// import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   root: {
     margin: "10px 10px",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   header: {
     flexGrow: 1,
   },
   media: {
-    height: 200
+    height: 250,
+    borderRadius: "50%",
   },
   paper: {
-    width: 300
+    width: 300,
   },
   image: {
-    width: "100%"
+    width: "100%",
   },
   typo: {
-    textAlign: "center"
+    textAlign: "left",
   },
   mx: {
-    margin: "6px 0px"
+    margin: "6px 0px",
   },
   card: {
-    width: 300
-  }
+    width: 240,
+    height: 469,
+    background:
+      "linear - gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FFFFFF",
+    "box-shadow": "0px 0px 12px 2px rgba(255, 94, 98, 0.45)",
+    "border-radius": 25,
+    fontFamily: "Poppins",
+  },
 });
-const tutorialSteps = [
-  {
-    label: 'SAMSUNG 21',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-    c: "512",
-    desc: "this is a TV of 32 inch not for you"
-  },
-  {
-    label: 'Bird',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-    c: "312",
-    desc: "this is a TV of 32 inch not for you"
-  },
-  {
-    label: 'Bali, Indonesia',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-    c: "412",
-    desc: "this is a TV of 32 inch not for you"
-  },
-  {
-    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-    imgPath:
-      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-    c: "132",
-    desc: "this is a TV of 32 inch not for you"
-  },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    c: "112",
-    desc: "this is a TV of 32 inch not for you"
-  },
-];
 
+const tutorialSteps = [{}, {}, {}];
 
-
+const cuurentPage = [{}, {}, {}, {}, {}, {}, {}, {}];
 
 function CardSwipeable(props) {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
-    <div classes={classes.root}>
-      <Card className={`${classes.root} ${classes.card}`}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={props.item.imgPath}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography className={classes.typo} gutterBottom variant="h6" component="h6" color="secondary">
-              ${props.item.c}
-            </Typography>
-            <Typography className={`${classes.typo} ${classes.mx}`} variant="h5" color="inherit" component="h3">
-              {props.item.label}
-            </Typography>
-            <Typography className={classes.typo} color="textSecondary" component="p">
-              {props.item.desc}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-      <Card className={`${classes.root} ${classes.card}`}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={props.item.imgPath}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography className={classes.typo} gutterBottom variant="h6" component="h6" color="secondary">
-              ${props.item.c}
-            </Typography>
-            <Typography className={`${classes.typo} ${classes.mx}`} variant="h5" color="inherit" component="h3">
-              {props.item.label}
-            </Typography>
-            <Typography className={classes.typo} color="textSecondary" component="p">
-              {props.item.desc}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-      <Card className={`${classes.root} ${classes.card}`}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={props.item.imgPath}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography className={classes.typo} gutterBottom variant="h6" component="h6" color="secondary">
-              ${props.item.c}
-            </Typography>
-            <Typography className={`${classes.typo} ${classes.mx}`} variant="h5" color="inherit" component="h3">
-              {props.item.label}
-            </Typography>
-            <Typography className={classes.typo} color="textSecondary" component="p">
-              {props.item.desc}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+      }}
+    >
+      {cuurentPage.map((ele, index) => {
+        return (
+          <div classes={classes.root}>
+            <Card className={`${classes.root} ${classes.card}`}>
+              <CardMedia
+                className={classes.media}
+                image={freshPizz}
+                title="Contemplative Reptile"
+              />
+              <CardContent style={{ padding: "15px 15px 0px 15px" }}>
+                <div style={{ textAlign: "left", position: "relative" }}>
+                  <h2>Golden Corn</h2>
+                  <div>
+                    <h5>Corn with all mozzarella cheese & cheddar cheese</h5>
+                  </div>
+                  <div className="pizCard-cutoization">
+                    <div>Size:</div>
+                    <div>Crust:</div>
+                  </div>
+                  <div className="pizCard-price">$ 3.25</div>
+                  <div className="pizCard-btn">Customise as per your test</div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 const ExploreMenu = () => {
   const classes = useStyles();
   return (
     <>
-      <div>
+      <div style={{ marginBottom: "50px" }}>
         <h1 style={{ marginBottom: "0px" }}>Explore Menu</h1>
         <div className="title-underline">
           <div className="line-1"></div>
@@ -161,10 +111,30 @@ const ExploreMenu = () => {
           </ul>
         </div>
       </div>
-      <Carousel classeName={classes.root}>
-        {
-          tutorialSteps.map((item, i) => <CardSwipeable key={i} item={item} />)
-        }
+      <Carousel
+        navButtonsProps={{
+          // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+          style: {
+            backgroundColor: "transparent",
+            borderRadius: 0,
+            color: "grey",
+            top: "47% !important"
+          },
+        }}
+        NextIcon={<ArrowForwardIosIcon />}
+        PrevIcon={<ArrowBackIos />}
+        height={"1000px"}
+        navButtonsAlwaysVisible={true}
+        indicators={false}
+        animation={"slide"}
+        autoPlay={false}
+        duration={1000}
+        classeName={classes.root}
+        fullHeightHover={true}
+      >
+        {tutorialSteps.map((item, i) => (
+          <CardSwipeable key={i} item={item} />
+        ))}
       </Carousel>
     </>
   );
