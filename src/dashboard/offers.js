@@ -3,7 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import Vector from "../images/Vector.png";
 import Card1 from "../images/Group 6162.png";
 import Card2 from "../images/Group 6163.png";
-import { Card } from "@mui/material";
+import { Card, Container } from "@mui/material";
 
 const Offers = () => {
 
@@ -20,7 +20,7 @@ const Offers = () => {
 
 
   return (
-    <>
+    <Container>
       <div>
         <h1 style={{ marginBottom: "0px" }}>Offers</h1>
         <div className="title-underline">
@@ -70,7 +70,7 @@ const Offers = () => {
 
         </Carousel>
       </div>
-    </>
+    </Container>
   );
 };
 

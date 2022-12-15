@@ -22,14 +22,16 @@ function App() {
     });
 
   return (
-    <div className="App">
-      <NavBar />
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
-      </Routes>
-      <Footer />
-    </div>
+    <Container maxWidth="xl" style={{padding: 0}}>
+      <div className="App">
+        <NavBar />
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Container>
   );
 }
 

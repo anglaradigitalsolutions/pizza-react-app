@@ -1,9 +1,18 @@
-import { CardContent, CardMedia } from "@mui/material";
-import React from "react";
+import {
+  CardContent,
+  CardMedia,
+  Container,
+  FormControl,
+  InputLabel,
+  NativeSelect,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import { makeStyles } from "@mui/styles";
 import { Card } from "reactstrap";
 import Vector from "../images/Vector.png";
+import red from "../images/Group 6178.svg";
+import green from "../images/Group 6172.svg";
 import freshPizz from "../images/pizza_21_veg 1.png";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
@@ -11,7 +20,7 @@ import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 // import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
   root: {
-    margin: "10px 10px",
+    margin: "20px 10px",
     display: "flex",
     flexDirection: "column",
   },
@@ -49,50 +58,90 @@ const tutorialSteps = [{}, {}, {}];
 
 const cuurentPage = [{}, {}, {}, {}, {}, {}, {}, {}];
 
-function CardSwipeable(props) {
+const ExploreMenu = () => {
   const classes = useStyles();
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-      }}
-    >
-      {cuurentPage.map((ele, index) => {
-        return (
-          <div classes={classes.root}>
-            <Card className={`${classes.root} ${classes.card}`}>
-              <CardMedia
+  const [pizzList, setPizzList] = useState([]);
+
+
+  function CardSwipeable(props) {
+    const classes = useStyles();
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        {pizzList.map((ele, index) => {
+          return (
+            <div classes={classes.root}>
+              <Card className={`${classes.root} ${classes.card}`} style={{ position: "relative" }}>
+                {/* <CardMedia
                 className={classes.media}
                 image={freshPizz}
                 title="Contemplative Reptile"
-              />
-              <CardContent style={{ padding: "15px 15px 0px 15px" }}>
-                <div style={{ textAlign: "left", position: "relative" }}>
-                  <h2>Golden Corn</h2>
-                  <div>
-                    <h5>Corn with all mozzarella cheese & cheddar cheese</h5>
+              /> */}
+                <div className="explore-pizza-container">
+                  <div className="explore-pizza-img-container">
+                    <img src={freshPizz} alt="pizz" style={{ height: 230, width: 230 }} />
                   </div>
-                  <div className="pizCard-cutoization">
-                    <div>Size:</div>
-                    <div>Crust:</div>
-                  </div>
-                  <div className="pizCard-price">$ 3.25</div>
-                  <div className="pizCard-btn">Customise as per your test</div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-const ExploreMenu = () => {
-  const classes = useStyles();
+                <CardContent style={{ padding: "15px 15px 0px 15px", marginBottom: 60 }}>
+                  <div style={{ textAlign: "left" }}>
+                    <div className="d-flex">
+                      <h2>{ele.name}
+                        <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" /></h2>
+                    </div>
+                    <div>
+                      <h5>{ele.desc}</h5>
+                    </div>
+                    <div className="pizCard-cutoization">
+                      <div className="dflex-align-center pizzaSize-selection">
+                        Size:
+                        <select defaultValue={ele.size}>
+                          <option value={"S"}>S</option>
+                          <option value={"M"}>M</option>
+                          <option value={"L"}>L</option>
+                        </select>
+                      </div>
+                      <div className="dflex-align-center pizzaSize-selection">Crust:
+                        <select defaultValue={ele.crust}>
+                          <option value={"Thin"}>Thin</option>
+                          <option value={"Medium"}>Medium</option>
+                          <option value={"Regular"}>Regular</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
+                  </div>
+                </CardContent>
+                <div className="pizCard-btn">Customise as per your test</div>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    fetch("http://localhost:3000/pizzData.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setPizzList(data);
+      });
+  }, []);
   return (
-    <>
+    <Container>
       <div style={{ marginBottom: "50px" }}>
         <h1 style={{ marginBottom: "0px" }}>Explore Menu</h1>
         <div className="title-underline">
@@ -118,12 +167,12 @@ const ExploreMenu = () => {
             backgroundColor: "transparent",
             borderRadius: 0,
             color: "grey",
-            top: "47% !important"
+            top: "47% !important",
           },
         }}
         NextIcon={<ArrowForwardIosIcon />}
         PrevIcon={<ArrowBackIos />}
-        height={"1000px"}
+        height={"1050px"}
         navButtonsAlwaysVisible={true}
         indicators={false}
         animation={"slide"}
@@ -136,7 +185,7 @@ const ExploreMenu = () => {
           <CardSwipeable key={i} item={item} />
         ))}
       </Carousel>
-    </>
+    </Container>
   );
 };
 

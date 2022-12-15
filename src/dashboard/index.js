@@ -1,26 +1,35 @@
-import { Container } from '@mui/material';
-import React from 'react'
-import Advertisement from './advertisement';
-import DeliveryZones from './deliveryZones';
-import ExploreMenu from './exploreMenu';
-import Offers from './offers';
-import WelcomePage from './welcomePage';
-import WhyChooseUs from './whyChooseUs';
+import { Container } from "@mui/material";
+import React from "react";
+import Advertisement from "./advertisement";
+import DeliveryZones from "./deliveryZones";
+import ExploreMenu from "./exploreMenu";
+import Offers from "./offers";
+import WelcomePage from "./welcomePage";
+import WhyChooseUs from "./whyChooseUs";
 
 const Dashboard = () => {
     return (
         <>
-
-            <Container>
+            <div className="welcomebackground">
                 <WelcomePage />
-                <WhyChooseUs />
-                <ExploreMenu />
-                <Offers />
-                <DeliveryZones />
-                <Advertisement />
-            </Container>
+                <div className="WhyChooseUsBG">
+                    <WhyChooseUs />
+                </div>
+                <div className="ExploreMenuBG">
+                    <ExploreMenu />
+                </div>
+                <div className="OffersBG">
+                    <Offers />
+                </div>
+                <div className="DeliveryZonesBG">
+                    <DeliveryZones />
+                </div>
+                <div className="AdvertisementBG">
+                    <Advertisement />
+                </div>
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -1,3 +1,4 @@
+import Cart from "./Cart";
 import Dashboard from "./dashboard";
 
 const routes = [
@@ -23,7 +24,7 @@ const routes = [
         key: "cart",
         route: "/cart",
         icon: "",
-        component: <Dashboard></Dashboard>,
+        component: <Cart></Cart>,
     },
 ];
 
