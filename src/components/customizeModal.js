@@ -1,5 +1,6 @@
 import {
     Button,
+    Checkbox,
     Dialog,
     DialogActions,
     DialogContent,
@@ -13,35 +14,22 @@ import { Container } from "@mui/system";
 import React from "react";
 import uncheckd from "../images/Shape.svg";
 import checked from "../images/Ellipse 37.svg";
+import sizes from "../common/sizes";
+import crustes from "../common/crusts";
+import avialableCheeseOptions from "../common/cheeseOptions";
+import avialableToppingOptions from "../common/toppingsOptions";
+
+
+
 
 const CustomizeModal = (props) => {
     // console.log(props.isOpen);
     const handleClose = () => {
         props.onCloseCustomize();
     };
-    const avialableCheeseOptions = [
-        { text: "Mozzarella", price: 5.33 },
-        { text: "Cheddar", price: 5.33 },
-        { text: "Gouda", price: 5.33 },
-        { text: "Parmesan", price: 5.33 },
-        { text: "Feta", price: 5.33 },
-        { text: "Brie", price: 5.33 },
-    ];
-    const avialableToppingOptions = [
-        { text: "Green Pepper", price: 5.33 },
-        { text: "Onios", price: 5.33 },
-        { text: "Mashrooms", price: 5.33 },
-        { text: "Green Pepper", price: 5.33 },
-        { text: "Black Olives", price: 5.33 },
-        { text: "Fresh Garlic", price: 5.33 },
-        { text: "Fresh Basil", price: 5.33 },
-        { text: "Pepperoni", price: 5.33 },
-        { text: "Becon", price: 5.33 },
-        { text: "Sausage", price: 5.33 },
-    ];
     return (
         <Dialog
-            maxWidth={"xl"}
+            maxWidth={"lg"}
             fullWidth
             disableEscapeKeyDown={false}
             open={props.isOpen}
@@ -65,78 +53,28 @@ const CustomizeModal = (props) => {
                             defaultValue="small"
                             name="radio-buttons-group"
                         >
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Small <br />
-                                        (17.7 cm)
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 2.22</div>
+                            {
+                                sizes.map((ele, index) => (
+                                    <div className="customize-section-box">
+                                        <div className="dflex-space-between">
+                                            <div className="p-5">
+                                                {ele.text} <br />
+                                                ({ele.size} cm)
+                                                <div className="dflex-align-center customize-section mb-0">
+                                                    <div className="customize-section-title ">{ele.currency} {ele.price}</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <Radio
+                                                    value={ele.value}
+                                                    checkedIcon={<img src={uncheckd} alt={"unck"} />}
+                                                    icon={<img src={checked} alt={"unck"} />}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <Radio
-                                            value="small"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Medium <br />
-                                        (24.5 cm)
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 4.45</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Radio
-                                            value="medium"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Large <br />
-                                        (33 cm)
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 3.12</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Radio
-                                            value="large"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Extra Large <br />
-                                        (45.7 cm)
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 6.15</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Radio
-                                            value="extra_large"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                                ))
+                            }
                         </RadioGroup>
                     </div>
                     <div style={{ width: "fit-content" }}>
@@ -152,58 +90,27 @@ const CustomizeModal = (props) => {
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="thin"
                             name="radio-buttons-group"
-                        >
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Thin
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 2.22</div>
+                        > {
+                                crustes.map((ele, index) => (
+                                    <div className="customize-section-box">
+                                        <div className="dflex-space-between">
+                                            <div className="p-5">
+                                                {ele.text}
+                                                <div className="dflex-align-center customize-section mb-0">
+                                                    <div className="customize-section-title ">{ele.currency} {ele.price}</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <Radio
+                                                    value={ele.value}
+                                                    checkedIcon={<img src={uncheckd} alt={"unck"} />}
+                                                    icon={<img src={checked} alt={"unck"} />}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <Radio
-                                            value="thin"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Regular
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 4.45</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Radio
-                                            value="medium"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="customize-section-box">
-                                <div className="dflex-space-between">
-                                    <div className="p-5">
-                                        Thick
-                                        <div className="dflex-align-center customize-section mb-0">
-                                            <div className="customize-section-title ">$ 3.12</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Radio
-                                            value="large"
-                                            checkedIcon={<img src={uncheckd} alt={"unck"} />}
-                                            icon={<img src={checked} alt={"unck"} />}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                                ))
+                            }
                         </RadioGroup>
                     </div>
                     <div className="dflex-space-between" style={{ maxWidth: 800 }}>
@@ -221,12 +128,12 @@ const CustomizeModal = (props) => {
                                             <FormControlLabel
                                                 value="Start"
                                                 control={
-                                                    <Radio
+                                                    <Checkbox
                                                         checkedIcon={<img src={uncheckd} alt={"unck"} />}
                                                         icon={<img src={checked} alt={"unck"} />}
                                                     />
                                                 }
-                                                label={ele.price}
+                                                label={ele.currency + " "  + ele.price}
                                                 labelPlacement="start"
                                             />
                                         </div>
@@ -248,12 +155,12 @@ const CustomizeModal = (props) => {
                                             <FormControlLabel
                                                 value="Start"
                                                 control={
-                                                    <Radio
+                                                    <Checkbox
                                                         checkedIcon={<img src={uncheckd} alt={"unck"} />}
                                                         icon={<img src={checked} alt={"unck"} />}
                                                     />
                                                 }
-                                                label={ele.price}
+                                                label={ele.currency + " "  +  ele.price}
                                                 labelPlacement="start"
                                             />
                                         </div>
