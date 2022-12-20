@@ -16,6 +16,7 @@ import green from "../images/Group 6172.svg";
 import freshPizz from "../images/pizza_21_veg 1.png";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
+import menus from "../common/menus";
 
 // import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
@@ -56,11 +57,10 @@ const useStyles = makeStyles({
 
 const tutorialSteps = [{}, {}, {}];
 
-const cuurentPage = [{}, {}, {}, {}, {}, {}, {}, {}];
-
 const ExploreMenu = () => {
   const classes = useStyles();
   const [pizzList, setPizzList] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState('BESTSELLERS')
 
 
   function CardSwipeable(props) {
@@ -70,56 +70,54 @@ const ExploreMenu = () => {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "space-around",
+          justifyContent: "flex-start",
         }}
       >
         {pizzList.map((ele, index) => {
-          return (
-            <div classes={classes.root}>
-              <Card className={`${classes.root} ${classes.card}`} style={{ position: "relative" }}>
-                {/* <CardMedia
+          return ele.type === selectedMenu ? (<div classes={classes.root}>
+            <Card className={`${classes.root} ${classes.card}`} style={{ position: "relative" }}>
+              {/* <CardMedia
                 className={classes.media}
                 image={freshPizz}
                 title="Contemplative Reptile"
               /> */}
-                <div className="explore-pizza-container">
-                  <div className="explore-pizza-img-container">
-                    <img src={freshPizz} alt="pizz" style={{ height: 230, width: 230 }} />
-                  </div>
+              <div className="explore-pizza-container">
+                <div className="explore-pizza-img-container">
+                  <img src={freshPizz} alt="pizz" style={{ height: 230, width: 230 }} />
                 </div>
-                <CardContent style={{ padding: "15px 15px 0px 15px", marginBottom: 60 }}>
-                  <div style={{ textAlign: "left" }}>
-                    <div className="d-flex">
-                      <h2>{ele.name}
-                        <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" /></h2>
-                    </div>
-                    <div>
-                      <h5>{ele.desc}</h5>
-                    </div>
-                    <div className="pizCard-cutoization">
-                      <div className="dflex-align-center pizzaSize-selection">
-                        Size:
-                        <select defaultValue={ele.size}>
-                          <option value={"S"}>S</option>
-                          <option value={"M"}>M</option>
-                          <option value={"L"}>L</option>
-                        </select>
-                      </div>
-                      <div className="dflex-align-center pizzaSize-selection">Crust:
-                        <select defaultValue={ele.crust}>
-                          <option value={"Thin"}>Thin</option>
-                          <option value={"Medium"}>Medium</option>
-                          <option value={"Regular"}>Regular</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
+              </div>
+              <CardContent style={{ padding: "15px 15px 0px 15px", marginBottom: 60 }}>
+                <div style={{ textAlign: "left" }}>
+                  <div className="d-flex">
+                    <h2>{ele.name}
+                      <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" /></h2>
                   </div>
-                </CardContent>
-                <div className="pizCard-btn">Customise as per your test</div>
-              </Card>
-            </div>
-          );
+                  <div>
+                    <h5>{ele.desc}</h5>
+                  </div>
+                  <div className="pizCard-cutoization">
+                    <div className="dflex-align-center pizzaSize-selection">
+                      Size:
+                      <select defaultValue={ele.size}>
+                        <option value={"S"}>S</option>
+                        <option value={"M"}>M</option>
+                        <option value={"L"}>L</option>
+                      </select>
+                    </div>
+                    <div className="dflex-align-center pizzaSize-selection">Crust:
+                      <select defaultValue={ele.crust}>
+                        <option value={"Thin"}>Thin</option>
+                        <option value={"Medium"}>Medium</option>
+                        <option value={"Regular"}>Regular</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
+                </div>
+              </CardContent>
+              <div className="pizCard-btn">Customise as per your test</div>
+            </Card>
+          </div>) : null;
         })}
       </div>
     );
@@ -151,12 +149,11 @@ const ExploreMenu = () => {
         </div>
         <div className="container-skewd navbar-skewd">
           <ul>
-            <li className="orange-btn">BESTSELLERS</li>
-            <li>VEG PIZZA </li>
-            <li>NON VEG PIZZA </li>
-            <li>BEVERAGES</li>
-            <li>SIDES</li>
-            <li>COMBOS</li>
+            {menus.map((ele, index) => {
+              return (
+                <li key={index} className={ele.value === selectedMenu ? "orange-btn" : ''} onClick={() => setSelectedMenu(ele.value)}>{ele.text}</li>
+              )
+            })}
           </ul>
         </div>
       </div>
@@ -172,8 +169,7 @@ const ExploreMenu = () => {
         }}
         NextIcon={<ArrowForwardIosIcon />}
         PrevIcon={<ArrowBackIos />}
-        height={"1050px"}
-        navButtonsAlwaysVisible={true}
+        navButtonsAlwaysInvisible={true}
         indicators={false}
         animation={"slide"}
         autoPlay={false}
@@ -181,9 +177,7 @@ const ExploreMenu = () => {
         classeName={classes.root}
         fullHeightHover={true}
       >
-        {tutorialSteps.map((item, i) => (
-          <CardSwipeable key={i} item={item} />
-        ))}
+        <CardSwipeable />
       </Carousel>
     </Container>
   );

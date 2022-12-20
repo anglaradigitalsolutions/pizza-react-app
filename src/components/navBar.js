@@ -21,7 +21,7 @@ const NavBar = () => {
       <NavLink to={'/cart'}>
         <div className="cart-btn dflex">
           <Badge badgeContent={4} style={{color: '#ff5e62'}} outline>
-            <img src={Cart} alt='cart' style={{ marginInline: 5 }} /></Badge>
+            <img src={Cart} alt='cart' style={{ marginInline: 10 }} /></Badge>
           Cart
         </div></NavLink>
       <div className="sign-btn">

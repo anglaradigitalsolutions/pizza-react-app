@@ -6,7 +6,8 @@
         "size": "M",
         "price": 2.33,
         "crust": "Thin",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "BESTSELLERS"
     },
     {
         "name": "Chicken Maximus",
@@ -15,7 +16,8 @@
         "size": "S",
         "price": 4.49,
         "crust": "Thin",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "NON_VEG_PIZZA"
     },
     {
         "name": "Veg Pizza",
@@ -24,7 +26,8 @@
         "size": "M",
         "price": 2.33,
         "crust": "",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "BEVERAGES"
     },
     {
         "name": "Veg Pizza",
@@ -33,25 +36,8 @@
         "size": "M",
         "price": 2.33,
         "crust": "",
-        "price_sign": "$"
-    },
-    {
-        "name": "Chicken Maximus",
-        "isVeg": false,
-        "desc": "Papper barbecue chicken for that extra zing",
-        "size": "S",
-        "price": 4.49,
-        "crust": "Thin",
-        "price_sign": "$"
-    },
-    {
-        "name": "Chicken Maximus",
-        "isVeg": false,
-        "desc": "Papper barbecue chicken for that extra zing",
-        "size": "S",
-        "price": 4.49,
-        "crust": "Thin",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "VEG_PIZZA"
     },
     {
         "name": "Veg Pizza",
@@ -60,7 +46,18 @@
         "size": "M",
         "price": 2.33,
         "crust": "",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "SIDES"
+    },
+    {
+        "name": "Veg Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "VEG_PIZZA"
     },
     {
         "name": "Chicken Maximus",
@@ -69,6 +66,117 @@
         "size": "S",
         "price": 4.49,
         "crust": "Thin",
-        "price_sign": "$"
+        "price_sign": "$",
+        "type": "NON_VEG_PIZZA"
+    },
+    {
+        "name": "Veg Pizza",
+        "isVeg": true,
+        "desc": "Combination of Mix veg & paneer with cheese",
+        "size": "M",
+        "price": 2.33,
+        "crust": "",
+        "price_sign": "$",
+        "type": "BESTSELLERS"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "BESTSELLERS"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "NON_VEG_PIZZA"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": true,
+        "desc": "Combination of chicken & paneer with cheese",
+        "size": "M",
+        "price": 2.33,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "BEVERAGES"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "NON_VEG_PIZZA"
+    },
+    {
+        "name": "Veg Pizza",
+        "isVeg": true,
+        "desc": "Combination of Mix veg & paneer with cheese",
+        "size": "M",
+        "price": 2.33,
+        "crust": "",
+        "price_sign": "$",
+        "type": "BEVERAGES"
+    },
+    {
+        "name": "Veg Pizza",
+        "isVeg": true,
+        "desc": "Combination of Mix veg & paneer with cheese",
+        "size": "M",
+        "price": 2.33,
+        "crust": "",
+        "price_sign": "$",
+        "type": "SIDES"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "SIDES"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "SIDES"
+    },
+    {
+        "name": "Veg Pizza",
+        "isVeg": true,
+        "desc": "Combination of Mix veg & paneer with cheese",
+        "size": "M",
+        "price": 2.33,
+        "crust": "",
+        "price_sign": "$",
+        "type": "COMBOS"
+    },
+    {
+        "name": "Chicken Maximus",
+        "isVeg": false,
+        "desc": "Papper barbecue chicken for that extra zing",
+        "size": "S",
+        "price": 4.49,
+        "crust": "Thin",
+        "price_sign": "$",
+        "type": "COMBOS"
     }
 ]

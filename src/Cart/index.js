@@ -22,10 +22,124 @@ import red from "../images/Group 6178.svg";
 import green from "../images/Group 6172.svg";
 import Subtract from "../images/Subtract.svg";
 import Add from "../images/Add.svg";
+import menus from "../common/menus";
+import CustomizeModal from "../components/customizeModal";
 
 const Cart = () => {
   const [checked, setChecked] = useState(false);
   const [pizzList, setPizzList] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState("BESTSELLERS");
+  const [slides, setSlides] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+
+  const groupBy = (array, property) => {
+    let hash = {};
+    for (let i = 0; i < array.length; i++) {
+      if (!hash[array[i][property]]) hash[array[i][property]] = [];
+      hash[array[i][property]].push(array[i]);
+    }
+    return hash;
+  };
+
+  const goToViolation = (id) => {
+    const violation = document.getElementById(id);
+    window.scrollTo({
+      top: violation.offsetTop,
+      behavior: "smooth"
+    });
+  };
+
+  const openCustomizeModal = (item) => {
+    console.log(item);
+    setIsOpen(true);
+  }
+
+  function GenerateSlides() {
+    return Object.keys(slides).map((key, i) => {
+      return (<div key={i}>
+        <h1 style={{ textAlign: "left", marginTop: 0, paddingLeft: 50 }}>
+          <b>{key.replaceAll("_", " ")}</b>
+        </h1>
+        <div id={key}>
+          <Grid
+            paddingLeft={"20px"}
+            spacing={4}
+            paddingRight={"20px"}
+            container
+            justifyContent="start"
+            className="margining-3"
+          >
+            {slides[key].map((element, index) => {
+              return (
+                <Grid item xs={6} key={index}>
+                  <div className="container-skewd cart-skewd">
+                    <div className="cart-pizz-img-container">
+                      <div className="cart-skwed-pizza">
+                        <img src={freshPizz} alt="pizz" />
+                      </div>
+                    </div>
+                    <div
+                      style={{ textAlign: "left", marginBottom: 35 }}
+                      className="cart-skwed-pizza-detail"
+                    >
+                      <div className="d-flex">
+                        <h5>{element.name}</h5>
+                        <img
+                          style={{ marginLeft: 5 }}
+                          src={element.isVeg ? green : red}
+                          alt="veg"
+                        />
+                      </div>
+                      <div
+                        style={{
+                          fontSize: 12,
+                          lineHeight: "16px",
+                          marginBottom: 15,
+                        }}
+                      >
+                        <p style={{ fontSize: 12, margin: 0 }}>
+                          {element.desc}
+                        </p>
+                      </div>
+                      <div
+                        className="pizCard-cutoization"
+                        style={{ fontSize: 16 }}
+                      >
+                        <div className="dflex-align-center pizzaSize-selection">
+                          Size:
+                          <select defaultValue={element.size}>
+                            <option value={"S"}>S</option>
+                            <option value={"M"}>M</option>
+                            <option value={"L"}>L</option>
+                          </select>
+                        </div>
+                        <div className="dflex-align-center pizzaSize-selection">
+                          Crust:
+                          <select defaultValue={element.crust}>
+                            <option value={"Thin"}>Thin</option>
+                            <option value={"Medium"}>Medium</option>
+                            <option value={"Regular"}>Regular</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="pizCard-price">
+                        {element.price_sign} {element.price}
+                      </div>
+                    </div>
+                    <div className="pizCard-btn" onClick={() => openCustomizeModal(element)}>
+                      Customise as per your test
+                    </div>
+                  </div>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
+      </div>);
+    });
+  };
+
+
 
   useEffect(() => {
     fetch("http://localhost:3000/pizzData.json", {
@@ -40,21 +154,32 @@ const Cart = () => {
       .then((data) => {
         console.log(data);
         setPizzList(data);
+        let temp = groupBy(data, "type");
+        setSlides(temp);
+        console.log(groupBy(data, "type"));
       });
   }, []);
 
   return (
     <Container maxWidth="xl">
       <Grid container marginBottom={"100px"}>
-        <Grid item xs={12}>
+        <Grid item xs={8}>
           <div className="container-skewd navbar-skewd">
             <ul>
-              <li className="orange-btn">BESTSELLERS</li>
-              <li>VEG PIZZA </li>
-              <li>NON VEG PIZZA </li>
-              <li>BEVERAGES</li>
-              <li>SIDES</li>
-              <li>COMBOS</li>
+              {menus.map((ele, index) => {
+                return (
+                  <li
+                    key={index}
+                    className={ele.value === selectedMenu ? "orange-btn" : ""}
+                    onClick={() => {
+                      goToViolation(ele.value)
+                      setSelectedMenu(ele.value)
+                    }}
+                  >
+                    {ele.text}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </Grid>
@@ -131,86 +256,9 @@ const Cart = () => {
               </div>
             </div>
           </Fade>
-          <h1 style={{ textAlign: "left", marginTop: 0, paddingLeft: 50 }}>
-            <b>BESTSELLERS</b>
-          </h1>
-          <div>
-            <Grid
-              paddingLeft={"20px"}
-              spacing={4}
-              paddingRight={"20px"}
-              container
-              justifyContent="start"
-              className="margining-3"
-            >
-              {pizzList.map((element) => {
-                return (
-                  <Grid item xs={6}>
-                    <div className="container-skewd cart-skewd">
-                      <div className="cart-pizz-img-container">
-                        <div className="cart-skwed-pizza">
-                          <img src={freshPizz} alt="pizz" />
-                        </div>
-                      </div>
-                      <div
-                        style={{ textAlign: "left", marginBottom: 35 }}
-                        className="cart-skwed-pizza-detail"
-                      >
-                        <div className="d-flex">
-                          <h5>{element.name}</h5>
-                          <img
-                            style={{ marginLeft: 5 }}
-                            src={element.isVeg ? green : red}
-                            alt="veg"
-                          />
-                        </div>
-                        <div
-                          style={{
-                            fontSize: 12,
-                            lineHeight: "16px",
-                            marginBottom: 15,
-                          }}
-                        >
-                          <p style={{ fontSize: 12, margin: 0 }}>
-                            {element.desc}
-                          </p>
-                        </div>
-                        <div
-                          className="pizCard-cutoization"
-                          style={{ fontSize: 16 }}
-                        >
-                          <div className="dflex-align-center pizzaSize-selection">
-                            Size:
-                            <select defaultValue={element.size}>
-                              <option value={"S"}>S</option>
-                              <option value={"M"}>M</option>
-                              <option value={"L"}>L</option>
-                            </select>
-                          </div>
-                          <div className="dflex-align-center pizzaSize-selection">
-                            Crust:
-                            <select defaultValue={element.crust}>
-                              <option value={"Thin"}>Thin</option>
-                              <option value={"Medium"}>Medium</option>
-                              <option value={"Regular"}>Regular</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="pizCard-price">
-                          {element.price_sign} {element.price}
-                        </div>
-                      </div>
-                      <div className="pizCard-btn">
-                        Customise as per your test
-                      </div>
-                    </div>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </div>
+          <GenerateSlides />
         </div>
-        <div style={{ maxWidth: 480, marginTop: 0 }} className="global-shadow">
+        <div style={{ maxWidth: 480, marginTop: 0, position: 'sticky', top: 10, height: 'fit-content' }} className="global-shadow">
           <Card style={{ boxShadow: "none", borderRadius: "30px" }}>
             <CardContent>
               <Typography
@@ -362,6 +410,7 @@ const Cart = () => {
           </Card>
         </div>
       </div>
+      <CustomizeModal isOpen={isOpen} onCloseCustomize={() => setIsOpen(false)} />
     </Container>
   );
 };
