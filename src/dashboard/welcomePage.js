@@ -10,7 +10,7 @@ const WelcomePage = () => {
   return (
     <Container>
       <div className="banner">
-        <div style={{ width: "490px", marginTop: 200 }}>
+        <div style={{ maxWidth: "490px", marginTop: 200 }}>
           <div className="banner-text">
             Order Your <br />
             <span>Favourite </span> Pizza

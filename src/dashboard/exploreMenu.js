@@ -72,6 +72,7 @@ const ExploreMenu = () => {
           flexWrap: "wrap",
           justifyContent: "flex-start",
         }}
+        className="card-contains"
       >
         {pizzList.map((ele, index) => {
           return ele.type === selectedMenu ? (<div classes={classes.root}>
@@ -134,7 +135,6 @@ const ExploreMenu = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setPizzList(data);
       });
   }, []);

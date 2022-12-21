@@ -57,11 +57,11 @@ const Offers = () => {
           }}
         >
           {
-            chunkArray(imgs, 2).map((item, i) => {
+            chunkArray(imgs, window.innerWidth < 600 ? 1 : 2).map((item, i) => {
               return (
                 <div key={i} className="d-flex" style={{ justifyContent: 'space-around' }}>
                   {item.map((ele, ie) => (
-                    <img key={ie} src={ele} alt="offer" />
+                    <img key={ie} src={ele} alt="offer" className="offerIMG" />
                   ))}
                 </div>
               )

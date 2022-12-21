@@ -7,6 +7,8 @@
         "price": 2.33,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 1,
+        "qty":1,
         "type": "BESTSELLERS"
     },
     {
@@ -17,6 +19,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 2,
+        "qty":1,
         "type": "NON_VEG_PIZZA"
     },
     {
@@ -27,6 +31,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 3,
+        "qty":1,
         "type": "BEVERAGES"
     },
     {
@@ -37,6 +43,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 4,
+        "qty":1,
         "type": "VEG_PIZZA"
     },
     {
@@ -47,6 +55,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 5,
+        "qty":1,
         "type": "SIDES"
     },
     {
@@ -57,6 +67,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 6,
+        "qty":1,
         "type": "VEG_PIZZA"
     },
     {
@@ -67,6 +79,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 7,
+        "qty":1,
         "type": "NON_VEG_PIZZA"
     },
     {
@@ -77,6 +91,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 8,
+        "qty":1,
         "type": "BESTSELLERS"
     },
     {
@@ -87,6 +103,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 9,
+        "qty":1,
         "type": "BESTSELLERS"
     },
     {
@@ -97,6 +115,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 10,
+        "qty":1,
         "type": "NON_VEG_PIZZA"
     },
     {
@@ -107,6 +127,8 @@
         "price": 2.33,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 11,
+        "qty":1,
         "type": "BEVERAGES"
     },
     {
@@ -117,6 +139,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 12,
+        "qty":1,
         "type": "NON_VEG_PIZZA"
     },
     {
@@ -127,6 +151,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 13,
+        "qty":1,
         "type": "BEVERAGES"
     },
     {
@@ -137,6 +163,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 14,
+        "qty":1,
         "type": "SIDES"
     },
     {
@@ -147,6 +175,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 15,
+        "qty":1,
         "type": "SIDES"
     },
     {
@@ -157,6 +187,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 16,
+        "qty":1,
         "type": "SIDES"
     },
     {
@@ -167,6 +199,8 @@
         "price": 2.33,
         "crust": "",
         "price_sign": "$",
+        "id": 17,
+        "qty":1,
         "type": "COMBOS"
     },
     {
@@ -177,6 +211,8 @@
         "price": 4.49,
         "crust": "Thin",
         "price_sign": "$",
+        "id": 18,
+        "qty":1,
         "type": "COMBOS"
     }
 ]

@@ -22,7 +22,7 @@ function App() {
     });
 
   return (
-    <Container maxWidth="xl" style={{padding: 0}}>
+    <Container maxWidth="xl"  style={{padding: 0}}>
       <div className="App">
         <NavBar />
         <Routes>

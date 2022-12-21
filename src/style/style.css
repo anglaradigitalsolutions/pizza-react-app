@@ -127,6 +127,7 @@
     background: #ffffff;
     box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
     border-radius: 20px;
+    z-index: 4;
 }
 
 .container-skewd div {
@@ -145,7 +146,7 @@
     transform-origin: bottom left;
     transform: skew(345deg, 0deg);
     background: #ffffff;
-    box-shadow: 4px 6px 12px rgb(255 94 98 / 30%);
+    box-shadow: 8px 6px 12px rgb(255 94 98 / 30%);
     border-radius: 20px;
 }
 
@@ -153,6 +154,7 @@
     display: flex;
     position: relative;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .banner-card-text {
@@ -405,6 +407,7 @@ h6 {
     width: -webkit-fill-available;
     justify-content: space-between;
     margin: 40px 0px;
+    flex-wrap: wrap;
 }
 
 .facility-images img {
@@ -421,6 +424,7 @@ h6 {
     display: flex;
     width: -webkit-fill-available;
     align-self: flex-start;
+    flex-wrap: wrap;
 }
 
 .appLink img {
@@ -585,6 +589,7 @@ h6 {
     position: absolute;
     right: 0px;
     bottom: 15px;
+    cursor: pointer;
 }
 
 .navbarMain {
@@ -593,6 +598,7 @@ h6 {
     padding: 20px 0px;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .noTopMargin {
@@ -635,6 +641,7 @@ h6 {
 
 .dflex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cart-btn {
@@ -744,10 +751,32 @@ h6 {
 }
 
 .specialInstruction {
-    border: 1px dashed #000000;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: left;
+    background-image: url("../images/note-svgrepo-com\ 1.svg") !important;
+    background-repeat: no-repeat !important;
+    text-indent: 30px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    padding: 15px;
+    background-position: 15px 13px !important;
+    border: 0.5px solid gainsboro;
+}
+
+.cart-page-container .inputs {
+    background: #FFFFFF;
+    border-radius: 5px;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    padding: 15px;
+    box-shadow: 0px 0px 12px 2px rgba(255, 94, 98, 0.45);
+    outline: none;
+    border: 0.5px solid gainsboro;
+}
+
+.specialInstruction::placeholder {
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.003em;
+    color: #999999;
 }
 
 .globalShadow {
@@ -885,13 +914,66 @@ h6 {
     margin-right: 20px;
     min-width: 150px;
 }
-.dflex-space-between{
+
+.dflex-space-between {
     display: flex;
     justify-content: space-between;
 }
-.mb-0{
+
+.mb-0 {
     margin-bottom: 0px;
 }
-.p-5{
+
+.p-5 {
     padding: 10px;
+}
+
+.apply-orange {
+    background: linear-gradient(90deg, #FF9966 0%, #FF5E62 100%);
+    border-radius: 5px;
+    padding: 15px 40px;
+    border: none;
+    color: white;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .footer-main {
+        padding: 50px 30px 0px 50px;
+    }
+
+    .container-skewd {
+        max-width: min-content;
+    }
+
+    .card-contains {
+        justify-content: center !important;
+    }
+
+    .boxes-today {
+        margin-top: 10px !important;
+    }
+
+    .MapImg {
+        width: -webkit-fill-available;
+    }
+
+    .offerIMG {
+        height: -webkit-fill-available;
+        width: -webkit-fill-available;
+    }
+    .appLink img{
+        margin-top: 10px;
+    }
+    .advertise-image{
+        width: -webkit-fill-available !important;
+        height: -webkit-fill-available !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .footer-opening {
+        padding-left: 0px;
+    }
 }

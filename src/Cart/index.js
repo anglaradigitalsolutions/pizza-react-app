@@ -24,6 +24,8 @@ import Subtract from "../images/Subtract.svg";
 import Add from "../images/Add.svg";
 import menus from "../common/menus";
 import CustomizeModal from "../components/customizeModal";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementItem } from "../features/counter/cart"
 
 const Cart = () => {
   const [checked, setChecked] = useState(false);
@@ -31,6 +33,13 @@ const Cart = () => {
   const [selectedMenu, setSelectedMenu] = useState("BESTSELLERS");
   const [slides, setSlides] = useState({});
   const [isOpen, setIsOpen] = useState(false);
+  const [pizzaDetail, setpizzaDetail] = useState({});
+  const items = useSelector((state) => state.cartStore.items);
+  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+
+
+
 
   const groupBy = (array, property) => {
     let hash = {};
@@ -50,14 +59,14 @@ const Cart = () => {
   };
 
   const openCustomizeModal = (item) => {
-    console.log(item);
+    setpizzaDetail(item);
     setIsOpen(true);
   }
 
   function GenerateSlides() {
     return Object.keys(slides).map((key, i) => {
       return (<div key={i}>
-        <h1 style={{ textAlign: "left", marginTop: 0, paddingLeft: 50 }}>
+        <h1 style={{ textAlign: "left", marginTop: 0, paddingLeft: 10 }}>
           <b>{key.replaceAll("_", " ")}</b>
         </h1>
         <div id={key}>
@@ -71,7 +80,7 @@ const Cart = () => {
           >
             {slides[key].map((element, index) => {
               return (
-                <Grid item xs={6} key={index}>
+                <Grid item xs={12} sm={12} md={6} key={index}>
                   <div className="container-skewd cart-skewd">
                     <div className="cart-pizz-img-container">
                       <div className="cart-skwed-pizza">
@@ -152,18 +161,21 @@ const Cart = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setPizzList(data);
         let temp = groupBy(data, "type");
         setSlides(temp);
-        console.log(groupBy(data, "type"));
       });
+    setProducts(items);
   }, []);
+
+  useEffect(() => {
+    setProducts(items);
+  }, [items])
 
   return (
     <Container maxWidth="xl">
-      <Grid container marginBottom={"100px"}>
-        <Grid item xs={8}>
+      <Grid container marginBottom={"50px"}>
+        <Grid item xs={12}>
           <div className="container-skewd navbar-skewd">
             <ul>
               {menus.map((ele, index) => {
@@ -283,78 +295,87 @@ const Cart = () => {
                 </div>
               </div>
               <div className="margining-3">
-                <div className="container-skewd cart-skewd margining-2">
-                  <div className="cart-pizz-img-container">
-                    <div className="cart-skwed-pizza">
-                      <img src={freshPizz} alt="pizz" />
-                    </div>
-                  </div>
-                  <div
-                    style={{ textAlign: "left" }}
-                    className="cart-skwed-pizza-detail"
-                  >
-                    <div className="d-flex">
-                      <h5>Golden Corn</h5>
-                      <img style={{ marginLeft: 5 }} src={green} alt="veg" />
-                    </div>
-                    <div
-                      style={{
-                        marginBottom: 15,
-                      }}
-                    >
-                      <p style={{ fontSize: 12, margin: 0 }}>
-                        Corn with all mozzarella cheese & cheddar cheese
-                      </p>
-                    </div>
-                    <div
-                      className="pizCard-cutoization"
-                      style={{ fontSize: 16 }}
-                    >
-                      <div className="dflex-align-center pizzaSize-selection">
-                        Size:
-                        <select defaultValue={"L"}>
-                          <option value={"S"}>S</option>
-                          <option value={"M"}>M</option>
-                          <option value={"L"}>L</option>
-                        </select>
+                {
+                  products.map((ele, index) =>
+                  (
+                    <div className="container-skewd cart-skewd margining-2">
+                      <div className="cart-pizz-img-container">
+                        <div className="cart-skwed-pizza">
+                          <img src={freshPizz} alt="pizz" />
+                        </div>
                       </div>
-                      <div className="dflex-align-center pizzaSize-selection">
-                        Crust:
-                        <select defaultValue={"Thin"}>
-                          <option value={"Thin"}>Thin</option>
-                          <option value={"Medium"}>Medium</option>
-                          <option value={"Regular"}>Regular</option>
-                        </select>
+                      <div
+                        style={{ textAlign: "left" }}
+                        className="cart-skwed-pizza-detail"
+                      >
+                        <div className="d-flex">
+                          <h5>{ele.name}</h5>
+                          <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" />
+                        </div>
+                        <div
+                          style={{
+                            marginBottom: 15,
+                          }}
+                        >
+                          <p style={{ fontSize: 12, margin: 0 }}>
+                            {ele.desc}
+                          </p>
+                        </div>
+                        <div
+                          className="pizCard-cutoization"
+                          style={{ fontSize: 16 }}
+                        >
+                          <div className="dflex-align-center pizzaSize-selection">
+                            Size:
+                            <select defaultValue={ele.size}>
+                              <option value={"S"}>S</option>
+                              <option value={"M"}>M</option>
+                              <option value={"L"}>L</option>
+                            </select>
+                          </div>
+                          <div className="dflex-align-center pizzaSize-selection">
+                            Crust:
+                            <select defaultValue={ele.crust}>
+                              <option value={"Thin"}>Thin</option>
+                              <option value={"Medium"}>Medium</option>
+                              <option value={"Regular"}>Regular</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="dflex-justifyBetween margining">
+                          <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
+                          <div className="d-flex dflex-justifyBetween qty-control">
+                            <img src={Subtract} alt="Subtract" />
+                            &nbsp;&nbsp; {ele.qty} &nbsp;&nbsp;
+                            <img src={Add} alt="Add" onClick={()=> { console.log(items); dispatch(incrementItem(ele.id))}} />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="dflex-justifyBetween margining">
-                      <div className="pizCard-price">$ 3.25</div>
-                      <div className="d-flex dflex-justifyBetween qty-control">
-                        <img src={Subtract} alt="Subtract" />
-                        &nbsp;&nbsp; 1 &nbsp;&nbsp;
-                        <img src={Add} alt="Add" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                }
               </div>
-              <div className="dflex-align-center">
-                <img
+              <div className="margining-3">
+                <h3 className="margining" style={{ textAlign: "left" }}>
+                  <b>Have a coupon?</b>
+                </h3>
+                <div className="dflex-justifyBetween">
+                  {/* <img
                   style={{ marginRight: 10 }}
                   src={applyoffer}
                   alt="appliedCoupon"
                 />
-                Applied coupon
+                Applied coupon */}
+                  <input value={'PIZZ123'} className="inputs" />
+                  <button className="apply-orange"> Apply</button>
+                </div>
               </div>
-              <div className="specialInstruction margining-3">
-                Special delivery instructions
-                <div className="dflex-align-center">
-                  <img
-                    style={{ marginRight: 10 }}
-                    src={specialIsn}
-                    alt="specialIsn"
-                  />
-                  abcd
+              <div className="margining-3">
+                <h3 className="margining" style={{ textAlign: "left" }}>
+                  <b>Special delivery instructions:</b>
+                </h3>
+                <div>
+                  <input className="inputs specialInstruction" placeholder="Mention your special instructions here..." />
                 </div>
               </div>
               <div>
@@ -410,7 +431,7 @@ const Cart = () => {
           </Card>
         </div>
       </div>
-      <CustomizeModal isOpen={isOpen} onCloseCustomize={() => setIsOpen(false)} />
+      <CustomizeModal isOpen={isOpen} pizzaDetail={pizzaDetail} onCloseCustomize={() => setIsOpen(false)} />
     </Container>
   );
 };

@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer-img" style={{ top: -34 }}></div>
       <div className="footer-img" style={{ bottom: 0, left: 0 }}></div>
       <Grid container>
-        <Grid xs={4} lg={4} sm={12} className="footer-opening">
+        <Grid xs={12} lg={4} sm={12} className="footer-opening">
           <div>
             <img src={logo} alt="logo" className="logoStyle leftSide" />
             <div className="leftSide" style={{ marginTop: 50 }}>
@@ -26,7 +26,7 @@ const Footer = () => {
             Designed with love by Anglara
           </div>
         </Grid>
-        <Grid xs={8} lg={8} sm={12}>
+        <Grid xs={12} lg={8} sm={12}>
           <div className="d-flex footerItemListing">
             <div className="footerItems">
               <h4>Order Now</h4>

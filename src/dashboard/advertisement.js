@@ -13,7 +13,7 @@ const Advertisement = () => {
       <div className="advetize">
         <div className="global-shadow" style={{ paddingInline: 50 }}>
           <Grid container spacing={3}>
-            <Grid item xs className="d-flex-center">
+            <Grid item xs={12} lg={6} className="d-flex-center">
               <div
                 className="banner-text"
                 style={{
@@ -51,6 +51,8 @@ const Advertisement = () => {
               </div>
             </Grid>
             <Grid
+              xs={12}
+              lg={6}
               item
               className="d-flex-center"
               style={{ justifyContent: "center" }}
@@ -58,7 +60,8 @@ const Advertisement = () => {
               <img
                 src={screen}
                 alt="screen"
-                style={{ width: 500, height: 600 }}
+                className="advertise-image"
+                style={{ maxWidth: '500px', maxHeight: '600px' }}
               />{" "}
             </Grid>
           </Grid>
