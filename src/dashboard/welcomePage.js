@@ -10,6 +10,10 @@ const WelcomePage = () => {
   return (
     <Container>
       <div className="banner">
+        {window.innerWidth < 600 && <div className="banner-text-mobile">
+          Order Your <br />
+          <span>Favourite </span> Pizza
+        </div>}
         <div className="banner-container">
           <div className="banner-text">
             Order Your <br />

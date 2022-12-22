@@ -3,6 +3,7 @@ import {
   CardMedia,
   Container,
   FormControl,
+  Grid,
   InputLabel,
   NativeSelect,
 } from "@mui/material";
@@ -76,8 +77,8 @@ const ExploreMenu = () => {
         className="card-contains"
       >
         {pizzList.map((ele, index) => {
-          return ele.type === selectedMenu ? (<div classes={classes.root}>
-            <Card className={`${classes.root} ${classes.card}`} style={{ position: "relative" }}>
+          return ele.type === selectedMenu ? (
+            <Card className={`${classes.root} ${classes.card} cardsMobile`} style={{ position: "relative" }}>
               {/* <CardMedia
                 className={classes.media}
                 image={freshPizz}
@@ -119,7 +120,7 @@ const ExploreMenu = () => {
               </CardContent>
               <div className="pizCard-btn">Customise as per your test</div>
             </Card>
-          </div>) : null;
+          ) : null;
         })}
       </div>
     );
@@ -141,24 +142,28 @@ const ExploreMenu = () => {
   }, []);
   return (
     <Container>
-      <div style={{ marginBottom: "50px" }}>
-        <h1 style={{ marginBottom: "0px" }}>Explore Menu</h1>
-        <div className="title-underline">
-          <div className="line-1"></div>
-          <img src={Vector} alt="vector" className="title-underline-img" />
-          <div className="line-2"></div>
-        </div>
-        {window.innerWidth > 600 ?
-          <div className="container-skewd navbar-skewd">
-            <ul>
-              {menus.map((ele, index) => {
-                return (
-                  <li key={index} className={ele.value === selectedMenu ? "orange-btn" : ''} onClick={() => setSelectedMenu(ele.value)}>{ele.text}</li>
-                )
-              })}
-            </ul>
-          </div> : <MobileSelection onSelectmenu={(e) => setSelectedMenu(e)} selectedMenu={selectedMenu} />}
-      </div>
+      <Grid container>
+        <Grid xs={12}>
+          <div style={{ marginBottom: "50px" }}>
+            <h1 style={{ marginBottom: "0px" }}>Explore Menu</h1>
+            <div className="title-underline">
+              <div className="line-1"></div>
+              <img src={Vector} alt="vector" className="title-underline-img" />
+              <div className="line-2"></div>
+            </div>
+            {window.innerWidth > 600 ?
+              <div className="container-skewd navbar-skewd">
+                <ul>
+                  {menus.map((ele, index) => {
+                    return (
+                      <li key={index} className={ele.value === selectedMenu ? "orange-btn" : ''} onClick={() => setSelectedMenu(ele.value)}>{ele.text}</li>
+                    )
+                  })}
+                </ul>
+              </div> : <MobileSelection onSelectmenu={(e) => setSelectedMenu(e)} selectedMenu={selectedMenu} />}
+          </div>
+        </Grid>
+      </Grid>
       <Carousel
         navButtonsProps={{
           // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS

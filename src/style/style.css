@@ -912,6 +912,16 @@ h6 {
     margin-right: 20px;
 }
 
+.customize-section-box-hover:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 10px rgb(255 94 98 / 25%) !important;
+}
+
+.orange-gradient {
+    background: linear-gradient(180deg, #ff9966 0%, #ff5e62 100%) !important;
+    color: white;
+}
+
 .dflex-space-between {
     display: flex;
     justify-content: space-between;
@@ -980,8 +990,31 @@ h6 {
     font-size: 16px;
 }
 
+.screen-card-container {
+    padding-right: 20px;
+}
+
 
 @media screen and (max-width: 600px) {
+    .deliveryZones {
+        margin-top: 50px !important;
+    }
+
+    .screen-card-container {
+        padding-right: 0px;
+    }
+
+    .cardsMobile {
+        width: 100% !important;
+        height: auto !important;
+        margin-block: 10px !important;
+        margin-inline: 5px;
+    }
+
+    .boxes-today {
+        width: auto;
+    }
+
     .filter-fade {
         position: absolute;
         top: 20px;
@@ -1027,7 +1060,7 @@ h6 {
     }
 
     .boxes-today {
-        margin-top: 10px !important;
+        margin: 5px !important;
     }
 
     .MapImg {
@@ -1037,6 +1070,7 @@ h6 {
     .offerIMG {
         height: -webkit-fill-available;
         width: -webkit-fill-available;
+        margin-inline: 10px;
     }
 
     .appLink img {
@@ -1125,7 +1159,7 @@ h6 {
         align-items: center;
         justify-content: space-between;
         padding: 20px;
-        width: auto;
+        width: 85%;
         height: auto;
         font-size: 20px;
         position: relative;
@@ -1166,6 +1200,7 @@ h6 {
 
     .banner-text {
         text-align: center;
+        display: none;
     }
 
     .banner-subtext {
@@ -1175,6 +1210,31 @@ h6 {
     .container-skewd:after {
         transform: skew(350deg, 0deg);
     }
+
+
+    .banner-text-mobile {
+        font-weight: bolder;
+        font-size: 30px;
+        line-height: 120%;
+        text-align: left;
+        color: hwb(232 2% 87%);
+        margin-top: 100px;
+        position: absolute;
+        width: 50%;
+    }
+
+    .banner-text-mobile span {
+        background: linear-gradient(180deg,
+                #ff9966 0%,
+                #ff5e62 99.99%,
+                rgba(5, 9, 34, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+
+    .banner-text-mobile {}
 }
 
 @media screen and (max-width: 1200px) {

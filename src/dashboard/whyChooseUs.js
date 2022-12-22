@@ -9,7 +9,7 @@ import Carousel from "react-material-ui-carousel";
 const WhyChooseUs = () => {
     return (
         <Container>
-            <div style={{ marginTop: 300 }}>
+            <div>
                 <h1 style={{ marginBottom: "0px" }}>Why Choose Us?</h1>
                 <div className="title-underline">
                     <div className="line-1"></div>

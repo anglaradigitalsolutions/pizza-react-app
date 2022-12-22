@@ -24,7 +24,7 @@ const NavBar = () => {
     <img src={drwerbtn} onClick={() => setisDrawer(true)} alt="drawer" className="cursor-pointer drawer-btn" />
     <div className="navbar-skewd noTopMargin dflex">
       <ul>
-        <li className=""><NavLink to={'/dashboard'}>Home </NavLink> </li>
+        <li className=""><NavLink style={{padding: '10px'}} to={'/dashboard'}>Home </NavLink> </li>
         <li> Services </li>
         <li>Menu </li>
         <li>Testimonial</li>

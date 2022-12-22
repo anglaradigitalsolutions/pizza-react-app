@@ -169,7 +169,7 @@ const CustomizeModal = (props) => {
               name="radio-buttons-group"
             >
               {sizes.map((ele, index) => (
-                <div className="customize-section-box">
+                <div className="customize-section-box customize-section-box-hover" onClick={() => setSize(ele.price)}>
                   <div className="dflex-space-between">
                     <div className="p-5">
                       {ele.text} <br />({ele.size} cm)
@@ -208,7 +208,7 @@ const CustomizeModal = (props) => {
             >
               {" "}
               {crustes.map((ele, index) => (
-                <div className="customize-section-box">
+                <div className="customize-section-box customize-section-box-hover" onClick={() => setCrust(ele.price)}>
                   <div className="dflex-space-between">
                     <div className="p-5">
                       {ele.text}
@@ -297,7 +297,7 @@ const CustomizeModal = (props) => {
                   <div className="customize-section-title ">Total</div>
                 </div>
               </div>
-              <div className="customize-section-box">
+              <div className="customize-section-box orange-gradient">
                 <div className="dflex-justifyBetween">
                   $ {getTotal()}
                 </div>

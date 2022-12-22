@@ -73,17 +73,23 @@ const Cart = () => {
     setIsConfirmOpen(true)
   }
 
+  const getTotal = () => {
+    let total = 0;
+    products.forEach((ele, index) => {
+      total = total + (ele.price * ele.qty);
+    })
+    return total.toFixed(2);
+  }
+
   function GenerateSlides() {
     return Object.keys(slides).map((key, i) => {
-      return (<div key={i}>
+      return (<div key={i} className='screen-card-container'>
         <h1 style={{ textAlign: "left", marginTop: 0, paddingLeft: 10 }}>
           <b>{key.replaceAll("_", " ")}</b>
         </h1>
         <div id={key}>
           <Grid
-            paddingLeft={"20px"}
-            spacing={4}
-            paddingRight={"20px"}
+            spacing={2}
             container
             justifyContent="start"
             className="margining-3"
@@ -102,12 +108,13 @@ const Cart = () => {
                       className="cart-skwed-pizza-detail"
                     >
                       <div className="d-flex">
-                        <h5>{element.name}</h5>
-                        <img
-                          style={{ marginLeft: 5 }}
-                          src={element.isVeg ? green : red}
-                          alt="veg"
-                        />
+                        <h5>{element.name}
+                          <img
+                            style={{ marginLeft: 5 }}
+                            src={element.isVeg ? green : red}
+                            alt="veg"
+                          /></h5>
+
                       </div>
                       <div
                         style={{
@@ -154,7 +161,7 @@ const Cart = () => {
             })}
           </Grid>
         </div>
-      </div>);
+      </div >);
     });
   };
 
@@ -185,9 +192,9 @@ const Cart = () => {
   return (
     <Container maxWidth="xl">
       <Grid container className="cart-page-container">
-        <Grid xl={8} lg={8} style={{ position: "relative" }} className="sccreenAdjust-left">
+        <Grid xl={8} lg={8} xs={12} style={{ position: "relative" }} className="sccreenAdjust-left">
           <Grid container marginBottom={"50px"} style={{ marginTop: 10, position: 'sticky', top: 10, marginBottom: 0, zIndex: 500 }}>
-            <Grid item xs={8} md={10}>
+            <Grid item xs={8} md={11.5}>
               <div className="container-skewd navbar-skewd">
                 <ul>
                   {menus.map((ele, index) => {
@@ -204,17 +211,19 @@ const Cart = () => {
                       </li>
                     );
                   })}
+                  <li>
+                    <div
+                      onClick={() => setChecked(!checked)}
+                      className="dflex-align-center cursor-pointer filter-fade"
+                    >
+                      <img src={filter} alt="filter" /> <b>Filter</b>
+                    </div>
+                  </li>
                 </ul>
               </div>
               {window.innerWidth < 600 && <MobileSelection onSelectmenu={(e) => { goToViolation(e); setSelectedMenu(e) }} selectedMenu={selectedMenu} />}
             </Grid>
-            <Grid xs={4} md={2} className="dFlex-Justify-center">
-              <div
-                onClick={() => setChecked(!checked)}
-                className="dflex-align-center cursor-pointer filter-fade"
-              >
-                <img src={filter} alt="filter" /> <b>Filter</b>
-              </div>
+            <Grid xs={4} className="dFlex-Justify-center">
               <Fade in={checked}>
                 <div className="filter-box">
                   <div className="dflex-justifyBetween">
@@ -283,7 +292,7 @@ const Cart = () => {
           </Grid>
           <GenerateSlides />
         </Grid>
-        <Grid xl={4} lg={4} style={{ marginTop: 0, position: 'sticky', top: 10, height: 'fit-content' }} className="global-shadow sccreenAdjust-right">
+        <Grid xl={4} lg={4} xs={12} style={{ marginTop: 0, position: 'sticky', top: 10, height: 'fit-content' }} className="global-shadow sccreenAdjust-right">
           <Card style={{ boxShadow: "none", borderRadius: "30px" }}>
             <CardContent>
               <Typography
@@ -322,8 +331,7 @@ const Cart = () => {
                         className="cart-skwed-pizza-detail"
                       >
                         <div className="d-flex">
-                          <h5>{ele.name}</h5>
-                          <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" />
+                          <h5>{ele.name}<img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" /></h5>
                           <span className="removeItem" onClick={() => openConfirmationModal(ele)}>
                             <HighlightOffIcon />
                           </span>
@@ -359,7 +367,7 @@ const Cart = () => {
                           </div>
                         </div>
                         <div className="dflex-justifyBetween margining">
-                          <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
+                          <div className="pizCard-price">{ele.price_sign} {(ele.price * ele.qty).toFixed(2)}</div>
                           <div className="d-flex dflex-justifyBetween qty-control">
                             <Tooltip title={ele.qty === 1 ? "Minimum quntity 1." : ''} describeChild><img src={Subtract} alt="Subtract" onClick={() => dispatch(decrementItem(ele.id))} /></Tooltip>
                             &nbsp;&nbsp; {ele.qty} &nbsp;&nbsp;
@@ -403,7 +411,7 @@ const Cart = () => {
                     <tr>
                       <td className="title">Subtotal</td>
                       <td>:</td>
-                      <td className="value">6.94</td>
+                      <td className="value">{getTotal()}</td>
                     </tr>
                     <tr>
                       <td className="title">Delivery</td>
@@ -432,7 +440,7 @@ const Cart = () => {
                       </td>
                       <td>:</td>
                       <td className="value">
-                        <h3>21.96</h3>
+                        <h3>{(parseFloat(getTotal()) + parseFloat(15.02)).toFixed(2)}</h3>
                       </td>
                     </tr>
                   </table>
