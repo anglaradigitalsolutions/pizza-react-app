@@ -2,7 +2,10 @@ import { Grid } from "@mui/material";
 import React from "react";
 import logo from "../images/Group 6282 1.png";
 import playstore from "../images/Group 1903 1.png";
-import appstore from "../images/Group 5848 1.png";
+import appstore from "../images/Group 5848 1.png"; 
+import twittersvg from "../images/Group 5855.svg"; 
+import lindinsvg from "../images/Group 5853.svg"; 
+import fbsvg from "../images/Group 3658.svg"; 
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -63,9 +66,9 @@ const Footer = () => {
               <div className="margining">
                 <h4>Connect with us</h4>
                 <div className="appLink margining">
-                  <FacebookRoundedIcon className="mr-4" />
-                  <TwitterIcon className="mr-4" />
-                  <InstagramIcon className="mr-4" />
+                  <img src={fbsvg} alt="fb" className="mr-4" />
+                  <img src={lindinsvg} alt="fb" className="mr-4" />
+                  <img src={twittersvg} alt="fb" className="mr-4" />
                 </div>
                 <h4>Download the app</h4>
                 <div className="appLink margining">

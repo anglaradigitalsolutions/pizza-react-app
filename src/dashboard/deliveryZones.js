@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const DeliveryZones = () => {
   return (
-    <Container style={{height:'710px'}}>
+    <Container style={{ height: '710px' }}>
       <div className="deliveryZones">
         <div>
           <h1 style={{ marginBottom: "0px" }}>Delivery Zones</h1>
@@ -18,11 +18,11 @@ const DeliveryZones = () => {
         </div>
         <div className="global-shadow" style={{ padding: 30 }}>
           <Grid container spacing={3}>
-            <Grid item xs style={{ position: 'relative' }}>
+            <Grid item xs={12} sm={12} lg={4} style={{ position: 'relative' }}>
               <img src={Map} alt="map" className="MapImg" />
             </Grid>
-            <Grid item xs={12} sm={12} lg={6} className="d-flex-center" style={{ 'justifyContent': 'center' }}>
-              <div style={{ textAlign: 'left', paddingLeft: 40 }}>
+            <Grid item xs={12} sm={12} lg={4} className="d-flex-center" style={{ 'justifyContent': 'center' }}>
+              <div style={{ textAlign: 'left'}} className="delivery-text-center">
                 <div>Delivery Zones</div>
                 <h2>Pizza Delivery Everywhere</h2>
                 <div>
@@ -30,10 +30,11 @@ const DeliveryZones = () => {
                     We currently deliver whithin the highlighted area. But we are
                     willing to make consession on larger area. contact with us.
                   </p>
+                  <input className="pincodeinputs" type='number' placeholder="Enter Pincode.." />
                 </div>
               </div>
             </Grid>
-            <Grid item xs={12} sm={12} lg={2}>
+            <Grid item xs={12} sm={12} lg={4}>
               <div style={{ textAlign: 'left' }}>
                 <h4 style={{ marginLeft: 5 }}><b>Near by stores</b></h4>
                 <div className="nearby-shadow">

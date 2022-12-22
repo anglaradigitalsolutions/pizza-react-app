@@ -17,6 +17,7 @@ import freshPizz from "../images/pizza_21_veg 1.png";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import menus from "../common/menus";
+import { MobileSelection } from "../components/mobileSelection";
 
 // import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
@@ -125,7 +126,7 @@ const ExploreMenu = () => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/pizzData.json", {
+    fetch("/pizzData.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -147,15 +148,16 @@ const ExploreMenu = () => {
           <img src={Vector} alt="vector" className="title-underline-img" />
           <div className="line-2"></div>
         </div>
-        <div className="container-skewd navbar-skewd">
-          <ul>
-            {menus.map((ele, index) => {
-              return (
-                <li key={index} className={ele.value === selectedMenu ? "orange-btn" : ''} onClick={() => setSelectedMenu(ele.value)}>{ele.text}</li>
-              )
-            })}
-          </ul>
-        </div>
+        {window.innerWidth > 600 ?
+          <div className="container-skewd navbar-skewd">
+            <ul>
+              {menus.map((ele, index) => {
+                return (
+                  <li key={index} className={ele.value === selectedMenu ? "orange-btn" : ''} onClick={() => setSelectedMenu(ele.value)}>{ele.text}</li>
+                )
+              })}
+            </ul>
+          </div> : <MobileSelection onSelectmenu={(e) => setSelectedMenu(e)} selectedMenu={selectedMenu} />}
       </div>
       <Carousel
         navButtonsProps={{

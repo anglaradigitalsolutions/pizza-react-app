@@ -11,22 +11,29 @@ export const cartSotre = createSlice({
             state.items = [...state.items, action.payload]
         },
         deleteItem: (state, action) => {
-            state.items = state.items.filter(item => item.id !== action.payload.id)
+            state.items = state.items.filter(item => item.id !== action.payload);
+            localStorage.setItem("pizzaCart", JSON.stringify(state.items))
         },
-        incrementItem: (state, action) =>{
-            // let tempstate = state.items
-            // tempstate.forEach((element)=>{
-            //     if(element.id === action.id){
-            //         element.qty = element.qty + 1;
-            //         console.log(element)
-            //     }
-            // });
-            // console.log(state.items);
+        incrementItem: (state, action) => {
+            state.items.forEach((element) => {
+                if (element.id === action.payload) {
+                    element.qty = element.qty + 1;
+                }
+            });
+            localStorage.setItem("pizzaCart", JSON.stringify(state.items))
+        },
+        decrementItem: (state, action) => {
+            state.items.forEach((element) => {
+                if (element.qty > 1 && element.id === action.payload) {
+                    element.qty = element.qty - 1;
+                }
+            });
+            localStorage.setItem("pizzaCart", JSON.stringify(state.items))
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { incrementByAmount, deleteItem, incrementItem } = cartSotre.actions
+export const { incrementByAmount, deleteItem, incrementItem, decrementItem } = cartSotre.actions
 
 export default cartSotre.reducer

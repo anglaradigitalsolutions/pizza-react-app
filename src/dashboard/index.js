@@ -12,21 +12,21 @@ const Dashboard = () => {
         <>
             <div className="welcomebackground">
                 <WelcomePage />
-                <div className="WhyChooseUsBG">
-                    <WhyChooseUs />
-                </div>
-                <div className="ExploreMenuBG">
-                    <ExploreMenu />
-                </div>
-                <div className="OffersBG">
-                    <Offers />
-                </div>
-                <div className="DeliveryZonesBG">
-                    <DeliveryZones />
-                </div>
-                <div className="AdvertisementBG">
-                    <Advertisement />
-                </div>
+            </div>
+            <div className="WhyChooseUsBG">
+                <WhyChooseUs />
+            </div>
+            <div className="ExploreMenuBG">
+                <ExploreMenu />
+            </div>
+            <div className="OffersBG">
+                <Offers />
+            </div>
+            <div className="DeliveryZonesBG">
+                <DeliveryZones />
+            </div>
+            <div className="AdvertisementBG">
+                <Advertisement />
             </div>
         </>
     );

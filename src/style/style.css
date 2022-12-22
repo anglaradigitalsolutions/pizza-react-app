@@ -232,7 +232,6 @@ input[type="text"]::placeholder {
     padding-inline: 20px;
     min-height: 50px;
     width: auto !important;
-    margin-right: 25px;
     text-align: left;
 }
 
@@ -340,7 +339,7 @@ input[type="text"]::placeholder {
     align-items: center;
     font-weight: 600;
     font-size: 16px;
-    padding-inline: 20px;
+    padding-inline: 15px;
     cursor: pointer;
 }
 
@@ -353,13 +352,12 @@ input[type="text"]::placeholder {
     position: relative;
     box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
     z-index: 3;
-    padding-inline: 20px;
+    padding-inline: 15px;
     min-height: 50px;
     margin-right: auto;
 }
 
 .navbar-skewd li:hover::after {
-    transform-origin: bottom left;
     background: linear-gradient(0deg,
             rgba(244, 244, 244, 0.45),
             rgba(244, 244, 244, 0.45)),
@@ -430,7 +428,7 @@ h6 {
 .appLink img {
     margin-right: 20px;
     height: 50px;
-    width: 180px;
+    /* width: 180px; */
 }
 
 .logoStyle {
@@ -718,6 +716,7 @@ h6 {
 
 .cart-skwed-pizza-detail {
     padding: 10px 20px 10px 20px;
+    max-width: 240px;
 }
 
 .cart-pizz-img-container {
@@ -738,11 +737,11 @@ h6 {
 }
 
 .navbarMain a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .navbarMain a:visited {
-    color: black;
+    color: black !important;
 }
 
 .margining-3 {
@@ -818,7 +817,7 @@ h6 {
     width: 328px;
     height: 311px;
     position: absolute;
-    top: 60px;
+    top: 85px;
     right: 30px;
     padding: 20px;
     z-index: 10;
@@ -884,7 +883,7 @@ h6 {
 
 .MuiBadge-badge {
     border: 1px solid #FF5E62;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     background-color: white;
 }
 
@@ -937,7 +936,85 @@ h6 {
     margin-left: 10px;
 }
 
+.drawer-btn {
+    display: none;
+}
+
+.dFlex-Justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.removeItem {
+    position: absolute;
+    right: -10px;
+    background: linear-gradient(90deg, #FF9966 0%, #FF5E62 100%);
+    border-radius: 50%;
+    display: flex;
+    color: white;
+    cursor: pointer;
+
+}
+
+.banner-container {
+    max-width: 490px;
+    margin-block: 210px;
+}
+
+.delivery-text-center {
+    padding-left: 40px;
+}
+
+.pincodeinputs {
+    border: 0px;
+    border-bottom: 1px solid gainsboro;
+    width: -webkit-fill-available;
+    outline: none;
+    padding-block: 10px;
+    font-family: "Poppins";
+    font-size: 16px;
+    /* text-indent: 10px; */
+}
+
+.pincodeinputs::placeholder {
+    font-family: "Poppins";
+    font-size: 16px;
+}
+
+
 @media screen and (max-width: 600px) {
+    .filter-fade {
+        position: absolute;
+        top: 20px;
+    }
+
+    .delivery-text-center {
+        text-align: center !important;
+        padding: 0px;
+    }
+
+    .MapImg {
+        position: static;
+    }
+
+    .AdvertisementBG {
+        background-size: 50px;
+        margin-top: 105px;
+    }
+
+    .DeliveryZonesBG {
+        background-size: 50px;
+        margin-bottom: 300px;
+    }
+
+    .OffersBG {
+        background-size: 50px;
+    }
+
+    .WhyChooseUsBG {
+        background-size: 50px;
+    }
+
     .footer-main {
         padding: 50px 30px 0px 50px;
     }
@@ -962,12 +1039,142 @@ h6 {
         height: -webkit-fill-available;
         width: -webkit-fill-available;
     }
-    .appLink img{
+
+    .appLink img {
         margin-top: 10px;
     }
-    .advertise-image{
+
+    .advertise-image {
         width: -webkit-fill-available !important;
         height: -webkit-fill-available !important;
+    }
+
+    .drawer-btn {
+        display: inline;
+    }
+
+    .leftSide {
+        margin-bottom: 20px;
+    }
+
+    .navbar-skewd {
+        display: none;
+    }
+
+    .mobile-Navbar {
+        background: #ffffff;
+        padding-block: 20px;
+        padding-left: 0px;
+        list-style-type: none;
+    }
+
+    .mobile-Navbar li {
+        margin-right: auto;
+        font-weight: 600;
+        font-size: 16px;
+        padding: 15px 30px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-Navbar a {
+        text-decoration: none !important;
+    }
+
+    .mobile-Navbar a:visited {
+        color: black;
+    }
+
+    .mobile-Navbar li:hover {
+        background: linear-gradient(0deg,
+                rgba(244, 244, 244, 0.45),
+                rgba(244, 244, 244, 0.45)),
+            #ffffff;
+        margin-right: auto;
+        background: linear-gradient(90deg, #FF9966 0%, #FF5E62 100%);
+        color: white !important;
+    }
+
+    .mobileNav-Icon {
+        color: #ff5e62;
+        margin-right: 10px;
+    }
+
+    .mobile-Navbar li:hover .mobileNav-Icon {
+        color: white;
+    }
+
+    .mobile-Navbar li:hover a:visited {
+        color: white;
+    }
+
+    .mobile-Navbar li:hover .MuiBadge-badge {
+        background-color: #FF5E62;
+    }
+
+    .mobileMenuItems {
+        list-style-type: none;
+    }
+
+    .mobileMenuItems li {
+        padding-block: 5px;
+    }
+
+    .mobile-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        position: relative;
+        background: #ffffff;
+        box-shadow: -4px 4px 4px rgb(255 164 166 / 30%);
+        border-radius: 20px;
+        z-index: 4;
+    }
+
+    .mobile-menu:after {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform-origin: bottom left;
+        transform: skew(345deg, 0deg);
+        background: #ffffff;
+        box-shadow: 8px 6px 12px rgb(255 94 98 / 30%);
+        border-radius: 20px;
+    }
+
+    .welcomebackground {
+        background-size: contain;
+    }
+
+    .banner-text {
+        font-size: xx-large;
+    }
+
+    .banner-container {
+        margin-top: 350px;
+        margin-bottom: 0px;
+    }
+
+    .banner-text {
+        text-align: center;
+    }
+
+    .banner-subtext {
+        text-align: center;
+    }
+
+    .container-skewd:after {
+        transform: skew(350deg, 0deg);
     }
 }
 
@@ -976,4 +1183,21 @@ h6 {
     .footer-opening {
         padding-left: 0px;
     }
+
+    /* .sccreenAdjust-left{
+        max-width: 100% !important;
+    }
+    .sccreenAdjust-right{
+        max-width: 100% !important;
+    } */
+}
+
+@media screen and (min-width: 1400px) {
+    /* .sccreenAdjust-left{
+        max-width: 70% !important;
+    }
+    .sccreenAdjust-right{
+        max-width: 30% !important;
+    } */
+
 }

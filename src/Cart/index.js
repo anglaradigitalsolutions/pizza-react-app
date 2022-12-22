@@ -6,6 +6,7 @@ import {
   Fade,
   Grid,
   Paper,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -25,7 +26,10 @@ import Add from "../images/Add.svg";
 import menus from "../common/menus";
 import CustomizeModal from "../components/customizeModal";
 import { useDispatch, useSelector } from "react-redux";
-import { incrementItem } from "../features/counter/cart"
+import { incrementItem, decrementItem, deleteItem } from "../features/counter/cart";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Confirmation } from "../components/confirmation";
+import { MobileSelection } from "../components/mobileSelection";
 
 const Cart = () => {
   const [checked, setChecked] = useState(false);
@@ -33,6 +37,7 @@ const Cart = () => {
   const [selectedMenu, setSelectedMenu] = useState("BESTSELLERS");
   const [slides, setSlides] = useState({});
   const [isOpen, setIsOpen] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [pizzaDetail, setpizzaDetail] = useState({});
   const items = useSelector((state) => state.cartStore.items);
   const [products, setProducts] = useState([]);
@@ -53,7 +58,7 @@ const Cart = () => {
   const goToViolation = (id) => {
     const violation = document.getElementById(id);
     window.scrollTo({
-      top: violation.offsetTop,
+      top: violation.offsetTop - 200,
       behavior: "smooth"
     });
   };
@@ -61,6 +66,11 @@ const Cart = () => {
   const openCustomizeModal = (item) => {
     setpizzaDetail(item);
     setIsOpen(true);
+  }
+
+  const openConfirmationModal = (item) => {
+    setpizzaDetail(item);
+    setIsConfirmOpen(true)
   }
 
   function GenerateSlides() {
@@ -151,7 +161,7 @@ const Cart = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/pizzData.json", {
+    fetch("/pizzData.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -174,103 +184,106 @@ const Cart = () => {
 
   return (
     <Container maxWidth="xl">
-      <Grid container marginBottom={"50px"}>
-        <Grid item xs={12}>
-          <div className="container-skewd navbar-skewd">
-            <ul>
-              {menus.map((ele, index) => {
-                return (
-                  <li
-                    key={index}
-                    className={ele.value === selectedMenu ? "orange-btn" : ""}
-                    onClick={() => {
-                      goToViolation(ele.value)
-                      setSelectedMenu(ele.value)
-                    }}
-                  >
-                    {ele.text}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </Grid>
-      </Grid>
-      <div className="cart-page-container">
-        <div style={{ maxWidth: 960, position: "relative" }}>
-          <div
-            onClick={() => setChecked(!checked)}
-            className="dflex-align-center top-right cursor-pointer"
-          >
-            <img src={filter} alt="filter" /> <b>Filter</b>
-          </div>
-          <Fade in={checked}>
-            <div className="filter-box">
-              <div className="dflex-justifyBetween">
-                Filter By
-                <span>
-                  <b>Clear all</b>
-                </span>
+      <Grid container className="cart-page-container">
+        <Grid xl={8} lg={8} style={{ position: "relative" }} className="sccreenAdjust-left">
+          <Grid container marginBottom={"50px"} style={{ marginTop: 10, position: 'sticky', top: 10, marginBottom: 0, zIndex: 500 }}>
+            <Grid item xs={8} md={10}>
+              <div className="container-skewd navbar-skewd">
+                <ul>
+                  {menus.map((ele, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className={ele.value === selectedMenu ? "orange-btn" : ""}
+                        onClick={() => {
+                          goToViolation(ele.value)
+                          setSelectedMenu(ele.value)
+                        }}
+                      >
+                        {ele.text}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-              <div className="filters">
-                <h4>Sort by:</h4>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  Newest
-                </label>
+              {window.innerWidth < 600 && <MobileSelection onSelectmenu={(e) => { goToViolation(e); setSelectedMenu(e) }} selectedMenu={selectedMenu} />}
+            </Grid>
+            <Grid xs={4} md={2} className="dFlex-Justify-center">
+              <div
+                onClick={() => setChecked(!checked)}
+                className="dflex-align-center cursor-pointer filter-fade"
+              >
+                <img src={filter} alt="filter" /> <b>Filter</b>
+              </div>
+              <Fade in={checked}>
+                <div className="filter-box">
+                  <div className="dflex-justifyBetween">
+                    Filter By
+                    <span>
+                      <b>Clear all</b>
+                    </span>
+                  </div>
+                  <div className="filters">
+                    <h4>Sort by:</h4>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      Newest
+                    </label>
 
-                <h4>Avialability :</h4>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  In stock (20)
-                </label>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  Not avialable (2)
-                </label>
-                <h4>Dimension :</h4>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  4.33cm ✖ 17.7cm
-                </label>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  22.5cm ✖ 30cm
-                </label>
-                <label>
-                  <Checkbox
-                    className="filter-check"
-                    icon={<RadioButtonUncheckedIcon color="black" />}
-                    checkedIcon={<RadioButtonCheckedIcon color="black" />}
-                  />
-                  45.9cm ✖ 61.8cm
-                </label>
-              </div>
-            </div>
-          </Fade>
+                    <h4>Avialability :</h4>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      In stock (20)
+                    </label>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      Not avialable (2)
+                    </label>
+                    <h4>Dimension :</h4>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      4.33cm ✖ 17.7cm
+                    </label>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      22.5cm ✖ 30cm
+                    </label>
+                    <label>
+                      <Checkbox
+                        className="filter-check"
+                        icon={<RadioButtonUncheckedIcon color="black" />}
+                        checkedIcon={<RadioButtonCheckedIcon color="black" />}
+                      />
+                      45.9cm ✖ 61.8cm
+                    </label>
+                  </div>
+                </div>
+              </Fade>
+            </Grid>
+          </Grid>
           <GenerateSlides />
-        </div>
-        <div style={{ maxWidth: 480, marginTop: 0, position: 'sticky', top: 10, height: 'fit-content' }} className="global-shadow">
+        </Grid>
+        <Grid xl={4} lg={4} style={{ marginTop: 0, position: 'sticky', top: 10, height: 'fit-content' }} className="global-shadow sccreenAdjust-right">
           <Card style={{ boxShadow: "none", borderRadius: "30px" }}>
             <CardContent>
               <Typography
@@ -311,6 +324,9 @@ const Cart = () => {
                         <div className="d-flex">
                           <h5>{ele.name}</h5>
                           <img style={{ marginLeft: 5 }} src={ele.isVeg ? green : red} alt="veg" />
+                          <span className="removeItem" onClick={() => openConfirmationModal(ele)}>
+                            <HighlightOffIcon />
+                          </span>
                         </div>
                         <div
                           style={{
@@ -345,9 +361,9 @@ const Cart = () => {
                         <div className="dflex-justifyBetween margining">
                           <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
                           <div className="d-flex dflex-justifyBetween qty-control">
-                            <img src={Subtract} alt="Subtract" />
+                            <Tooltip title={ele.qty === 1 ? "Minimum quntity 1." : ''} describeChild><img src={Subtract} alt="Subtract" onClick={() => dispatch(decrementItem(ele.id))} /></Tooltip>
                             &nbsp;&nbsp; {ele.qty} &nbsp;&nbsp;
-                            <img src={Add} alt="Add" onClick={()=> { console.log(items); dispatch(incrementItem(ele.id))}} />
+                            <Tooltip title={ele.qty === 1 ? "Minimum quntity 1." : ''} describeChild><img src={Add} alt="Add" onClick={() => dispatch(incrementItem(ele.id))} /></Tooltip>
                           </div>
                         </div>
                       </div>
@@ -429,9 +445,10 @@ const Cart = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
       <CustomizeModal isOpen={isOpen} pizzaDetail={pizzaDetail} onCloseCustomize={() => setIsOpen(false)} />
+      <Confirmation isOpen={isConfirmOpen} pizzaDetail={pizzaDetail} onClose={() => setIsConfirmOpen(false)} />
     </Container>
   );
 };

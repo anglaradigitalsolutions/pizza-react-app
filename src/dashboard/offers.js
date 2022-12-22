@@ -37,7 +37,7 @@ const Offers = () => {
           animation={"slide"}
           autoPlay={false}
           height={300}
-          duration={1000}
+          duration={500}
           fullHeightHover={true}
           IndicatorIcon={<></>}
           indicatorIconButtonProps={{
