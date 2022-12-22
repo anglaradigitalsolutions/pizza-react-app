@@ -30,7 +30,10 @@ const CustomizeModal = (props) => {
   const [detail, setDetail] = useState(props.pizzaDetail);
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cartStore.items);
-
+  const [checkcheese, setcheckcheese] = useState([]);
+  const [checkToppings, setcheckToppings] = useState([]);
+  const [size, setSize] = useState(2.22);
+  const [crust, setCrust] = useState(3.25);
 
 
 
@@ -45,6 +48,38 @@ const CustomizeModal = (props) => {
   const handleClose = () => {
     props.onCloseCustomize();
   };
+
+  const hadnleCheckCheese = (event, ele) => {
+    const { name, checked } = event.target;
+    if (checked) {
+      setcheckcheese([...new Set([...checkcheese, ele])])
+    }
+    else {
+      setcheckcheese(checkcheese.filter(x => x.text !== ele.text))
+    }
+  }
+
+  const hadnleCheckTopping = (event, ele) => {
+    const { name, checked } = event.target;
+    if (checked) {
+      setcheckToppings([...new Set([...checkToppings, ele])])
+    }
+    else {
+      setcheckToppings(checkToppings.filter(x => x.text !== ele.text))
+    }
+  }
+
+  const getTotal = () => {
+    let totalToppings = 0;
+    checkToppings.forEach((e) => {
+      totalToppings = totalToppings + parseFloat(e.price);
+    })
+    let totalCheese = 0;
+    checkcheese.forEach((e) => {
+      totalCheese = totalCheese + parseFloat(e.price);
+    })
+    return (totalToppings + totalCheese + size + crust).toFixed(2);
+  }
 
   return (
     <Dialog
@@ -113,7 +148,7 @@ const CustomizeModal = (props) => {
                     </div>
                   </div>
                   <div className="pizCard-price">
-                    {props.pizzaDetail.price_sign} {props.pizzaDetail.price}
+                    {props.pizzaDetail.price_sign} {getTotal()}
                   </div>
                 </div>
               </div>
@@ -130,7 +165,7 @@ const CustomizeModal = (props) => {
             <RadioGroup
               style={{ display: "flex", flexDirection: "row" }}
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="small"
+              value={size}
               name="radio-buttons-group"
             >
               {sizes.map((ele, index) => (
@@ -146,7 +181,8 @@ const CustomizeModal = (props) => {
                     </div>
                     <div>
                       <Radio
-                        value={ele.value}
+                        onChange={() => setSize(ele.price)}
+                        value={ele.price}
                         checkedIcon={<img src={uncheckd} alt={"unck"} />}
                         icon={<img src={checked} alt={"unck"} />}
                       />
@@ -167,7 +203,7 @@ const CustomizeModal = (props) => {
             <RadioGroup
               style={{ display: "flex", flexDirection: "row" }}
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="thin"
+              value={crust}
               name="radio-buttons-group"
             >
               {" "}
@@ -184,7 +220,8 @@ const CustomizeModal = (props) => {
                     </div>
                     <div>
                       <Radio
-                        value={ele.value}
+                        onChange={() => setCrust(ele.price)}
+                        value={ele.price}
                         checkedIcon={<img src={uncheckd} alt={"unck"} />}
                         icon={<img src={checked} alt={"unck"} />}
                       />
@@ -194,8 +231,8 @@ const CustomizeModal = (props) => {
               ))}
             </RadioGroup>
           </div>
-          <div className="dflex-space-between" style={{ maxWidth: 800 }}>
-            <div style={{ minWidth: "350px" }}>
+          <div className="dflex-space-between">
+            <div style={{ minWidth: "250px" }}>
               <div className="dflex-justifyBetween">
                 <div className="dflex-align-center customize-section">
                   <div className="customize-section-title ">Toppings</div>
@@ -210,6 +247,9 @@ const CustomizeModal = (props) => {
                         value="Start"
                         control={
                           <Checkbox
+                            onChange={(event) => hadnleCheckTopping(event, ele)}
+                            name={ele.text}
+                            checked={ele.checked}
                             checkedIcon={<img src={uncheckd} alt={"unck"} />}
                             icon={<img src={checked} alt={"unck"} />}
                           />
@@ -222,7 +262,7 @@ const CustomizeModal = (props) => {
                 })}
               </div>
             </div>
-            <div style={{ minWidth: "350px" }}>
+            <div style={{ minWidth: "250px" }}>
               <div className="dflex-justifyBetween">
                 <div className="dflex-align-center customize-section">
                   <div className="customize-section-title ">Cheese</div>
@@ -237,6 +277,8 @@ const CustomizeModal = (props) => {
                         value="Start"
                         control={
                           <Checkbox
+                            onChange={(event) => hadnleCheckCheese(event, ele)}
+                            name={ele.text}
                             checkedIcon={<img src={uncheckd} alt={"unck"} />}
                             icon={<img src={checked} alt={"unck"} />}
                           />
@@ -247,6 +289,18 @@ const CustomizeModal = (props) => {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+            <div style={{ minWidth: "250px" }}>
+              <div className="dflex-justifyBetween">
+                <div className="dflex-align-center customize-section">
+                  <div className="customize-section-title ">Total</div>
+                </div>
+              </div>
+              <div className="customize-section-box">
+                <div className="dflex-justifyBetween">
+                  $ {getTotal()}
+                </div>
               </div>
             </div>
           </div>
