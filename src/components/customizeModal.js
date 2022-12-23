@@ -38,6 +38,8 @@ const CustomizeModal = (props) => {
 
 
   const addToCart = () => {
+    let item = props.pizzaDetail;
+    item.price = getTotal();
     dispatch(incrementByAmount(props.pizzaDetail));
     setTimeout(() => {
       console.log(items);

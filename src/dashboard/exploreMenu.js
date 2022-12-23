@@ -19,6 +19,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import menus from "../common/menus";
 import { MobileSelection } from "../components/mobileSelection";
+import CustomizeModal from "../components/customizeModal";
 
 // import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
@@ -63,6 +64,15 @@ const ExploreMenu = () => {
   const classes = useStyles();
   const [pizzList, setPizzList] = useState([]);
   const [selectedMenu, setSelectedMenu] = useState('BESTSELLERS')
+  const [isOpen, setIsOpen] = useState(false);
+  const [pizzaDetail, setpizzaDetail] = useState({});
+
+
+
+  const openCustomizeModal = (item) => {
+    setpizzaDetail(item);
+    setIsOpen(true);
+  }
 
 
   function CardSwipeable(props) {
@@ -118,7 +128,7 @@ const ExploreMenu = () => {
                   <div className="pizCard-price">{ele.price_sign} {ele.price}</div>
                 </div>
               </CardContent>
-              <div className="pizCard-btn">Customise as per your test</div>
+              <div className="pizCard-btn" onClick={() => openCustomizeModal(ele)}>Customise as per your test</div>
             </Card>
           ) : null;
         })}
@@ -186,6 +196,7 @@ const ExploreMenu = () => {
       >
         <CardSwipeable />
       </Carousel>
+      <CustomizeModal isOpen={isOpen} pizzaDetail={pizzaDetail} onCloseCustomize={() => setIsOpen(false)} />
     </Container>
   );
 };
