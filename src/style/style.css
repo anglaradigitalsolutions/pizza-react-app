@@ -153,7 +153,7 @@
 .lined-skew-btns {
     display: flex;
     position: relative;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -996,8 +996,33 @@ h6 {
 
 
 @media screen and (max-width: 600px) {
+
+    .lined-skew-btns {
+        justify-content: space-between !important;
+    }
+
+    .orange-btn {
+        padding-inline: 10px;
+    }
+
+    .grey-btn {
+        padding-inline: 10px;
+    }
+
     .deliveryZones {
         margin-top: 50px !important;
+    }
+
+    .scroolable-formGroup {
+        overflow: auto;
+        display: block !important;
+        white-space: nowrap;
+    }
+
+    .scroolable-formGroup .customize-section-box {
+        margin-block: 20px !important;
+        margin-inline: 5px !important;
+        display: inline-block;
     }
 
     .screen-card-container {
@@ -1148,6 +1173,10 @@ h6 {
 
     .mobileMenuItems {
         list-style-type: none;
+        background: #ffffff;
+        box-shadow: 6px 10px 12px rgb(255 164 166 / 30%);
+        padding-left: 0px;
+        border-radius: 10px;
     }
 
     .mobileMenuItems li {

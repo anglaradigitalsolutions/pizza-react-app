@@ -164,6 +164,7 @@ const CustomizeModal = (props) => {
             </div>
             <RadioGroup
               style={{ display: "flex", flexDirection: "row" }}
+              className="scroolable-formGroup"
               aria-labelledby="demo-radio-buttons-group-label"
               value={size}
               name="radio-buttons-group"
@@ -202,6 +203,7 @@ const CustomizeModal = (props) => {
             </div>
             <RadioGroup
               style={{ display: "flex", flexDirection: "row" }}
+              className="scroolable-formGroup"
               aria-labelledby="demo-radio-buttons-group-label"
               value={crust}
               name="radio-buttons-group"
