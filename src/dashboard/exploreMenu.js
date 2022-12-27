@@ -20,6 +20,7 @@ import ArrowBackIos from "@mui/icons-material/ArrowBackIos";
 import menus from "../common/menus";
 import { MobileSelection } from "../components/mobileSelection";
 import CustomizeModal from "../components/customizeModal";
+import pizzData from "./pizzData";
 
 // import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles({
@@ -137,18 +138,18 @@ const ExploreMenu = () => {
   }
 
   useEffect(() => {
-    fetch("pizzData.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setPizzList(data);
-      });
+    // fetch("./pizzData.json", {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+      // .then((data) => {
+        setPizzList(pizzData);
+      // });
   }, []);
   return (
     <Container>

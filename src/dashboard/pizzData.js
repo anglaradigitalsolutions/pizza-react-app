@@ -1,4 +1,4 @@
-[
+const pizzData = [
     {
         "name": "Veg Pizza",
         "isVeg": true,
@@ -228,3 +228,5 @@
         "type": "NON_VEG_PIZZA"
     }
 ]
+
+export default pizzData;

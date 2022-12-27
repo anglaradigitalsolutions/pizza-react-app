@@ -30,6 +30,7 @@ import { incrementItem, decrementItem, deleteItem } from "../features/counter/ca
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Confirmation } from "../components/confirmation";
 import { MobileSelection } from "../components/mobileSelection";
+import pizzData from "../dashboard/pizzData";
 
 const Cart = () => {
   const [checked, setChecked] = useState(false);
@@ -168,20 +169,20 @@ const Cart = () => {
 
 
   useEffect(() => {
-    fetch("pizzData.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setPizzList(data);
-        let temp = groupBy(data, "type");
+    // fetch("pizzData.json", {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //   },
+    // })
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+        setPizzList(pizzData);
+        let temp = groupBy(pizzData, "type");
         setSlides(temp);
-      });
+      // });
     setProducts(items);
   }, []);
 
