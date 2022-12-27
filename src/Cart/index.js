@@ -168,7 +168,7 @@ const Cart = () => {
 
 
   useEffect(() => {
-    fetch("/pizzData.json", {
+    fetch("pizzData.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",

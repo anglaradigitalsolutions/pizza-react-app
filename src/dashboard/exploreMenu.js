@@ -137,7 +137,7 @@ const ExploreMenu = () => {
   }
 
   useEffect(() => {
-    fetch("/pizzData.json", {
+    fetch("pizzData.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
